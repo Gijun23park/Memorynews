@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>5. 메모리 뉴스 트래커</title>
+<style>
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css");
+
+:root {
+    --main-color: #355070;
+    --bg-color: #F4F6F8;
+    --surface-color: #FFFFFF;
+    --text-main: #333333;
+    --text-sub: #666666;
+    --border-color: #C5C5C5;
+    --radius-sm: 6px;
+    --radius-md: 8px;
+    --radius-pill: 999px;
+    --accent-mint: #DDE8ED;
+    --col-red:    #C0392B;
+    --col-orange: #D97706;
+    --col-blue:   #1967D2;
+    --col-green:  #1E8E3E;
+    --col-purple: #6D28D9;
+}
+* { box-sizing: border-box; }
+body {
+    margin: 0;
+    font-family: 'Pretendard', -apple-system, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+/* ── 헤더 ── */
+.header {
+    height: 60px;
+    background-color: var(--main-color);
+    border-bottom: 1px solid var(--border-color);
+    display: flex; align-items: center;
+    padding: 0 24px;
+    position: sticky; top: 0; z-index: 100;
+    justify-content: space-between;
+}
+.header-logo { font-size: 20px; font-weight: 700; color: #fff; letter-spacing: -0.3px; }
+.header-right { font-size: 13px; color: rgba(255,255,255,0.72); }
+
+/* ── 탭 내비게이션 (스크린샷 스타일) ── */
+.tab-nav {
+    background-color: var(--surface-color);
+    border-bottom: 2px solid var(--border-color);
+    display: flex;
+    padding: 0 24px;
+    gap: 0;
+}
+.tab-item {
+    padding: 13px 22px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-sub);
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    margin-bottom: -2px;
+    display: flex; align-items: center; gap: 7px;
+    transition: color 0.15s;
+    user-select: none;
+    white-space: nowrap;
+}
+.tab-item:hover { color: var(--text-main); }
+.tab-item.active {
+    color: var(--main-color);
+    border-bottom-color: var(--main-color);
+    font-weight: 700;
+}
+.tab-content { display: none; }
+.tab-content.active { display: flex; flex-direction: column; gap: 16px; }
+
+/* ── 레이아웃 ── */
+.container {
+    max-width: 1280px;
+    margin: 20px auto;
+    padding: 0 24px;
+}
+
+/* ── 카드 ── */
+.card {
+    background-color: var(--surface-color);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-color);
+    padding: 20px 24px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+}
+.card-title {
+    font-size: 16px; font-weight: 700;
+    margin: 0 0 14px; color: var(--text-main);
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px;
+}
+
+/* ── KPI — 카드별 컬러 ── */
+.kpi-grid { display: flex; gap: 14px; }
+.kpi-item {
+    flex: 1; padding: 16px 18px;
+    background-color: var(--surface-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    display: flex; flex-direction: column; justify-content: space-between;
+    min-height: 100px;
+}
+.kpi-item.c-blue   { border-top: 3px solid var(--col-blue); }
+.kpi-item.c-orange { border-top: 3px solid var(--col-orange); }
+.kpi-item.c-green  { border-top: 3px solid var(--col-green); }
+.kpi-label { font-size: 13px; color: var(--text-sub); margin-bottom: 6px; }
+.kpi-value { font-size: 28px; font-weight: 700; margin: 0; }
+.kpi-value.c-blue   { color: var(--col-blue); }
+.kpi-value.c-orange { color: var(--col-orange); }
+.kpi-value.c-green  { color: var(--col-green); }
+
+/* ── 알림 배너 (스크린샷 노란 배너) ── */
+.alert-banner {
+    background-color: #FFFBEA;
+    border: 1px solid #F6D860;
+    border-left: 4px solid var(--col-orange);
+    border-radius: var(--radius-md);
+    padding: 11px 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-main);
+    flex-wrap: wrap;
+}
+.alert-icon { font-size: 16px; flex-shrink: 0; }
+.alert-banner strong { color: var(--col-orange); }
+
+/* ── 종합 인사이트 ── */
+.summary-box { display: flex; flex-direction: column; gap: 8px; }
+.summary-line {
+    font-size: 14px; color: var(--text-main); line-height: 1.65;
+    padding: 10px 14px;
+    background-color: var(--bg-color);
+    border-left: 4px solid var(--main-color);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+.summary-line strong { color: var(--main-color); }
+
+/* ── 배지 ── */
+.badge {
+    display: inline-block; padding: 3px 9px;
+    border-radius: var(--radius-pill);
+    font-size: 12px; font-weight: 600;
+}
+.badge-success { background-color: #E6F4EA; color: #1E8E3E; }
+.badge-pending { background-color: #E8F0FE; color: #1967D2; }
+
+/* ── 초이스 칩 ── */
+.flex-gap { display: flex; gap: 8px; flex-wrap: wrap; }
+.choice-chip {
+    padding: 5px 14px;
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--border-color);
+    background-color: var(--surface-color);
+    color: var(--text-sub); font-size: 13px; cursor: default;
+}
+.choice-chip.active {
+    background-color: var(--main-color); color: #fff;
+    border-color: var(--main-color); font-weight: 600;
+}
+
+/* ── 뉴스 2열 그리드 ── */
+.news-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+}
+.news-item {
+    display: flex; flex-direction: column; gap: 8px;
+    background-color: var(--surface-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 15px;
+}
+.news-item-header { display: flex; align-items: flex-start; gap: 10px; }
+.news-rank {
+    width: 32px; height: 32px; flex-shrink: 0;
+    border-radius: var(--radius-sm);
+    background-color: var(--bg-color);
+    border: 1px solid var(--border-color);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 700; color: var(--main-color);
+}
+.news-rank.top { background-color: var(--main-color); color: #fff; border-color: var(--main-color); }
+.news-title {
+    font-size: 14px; font-weight: 700;
+    color: var(--text-main); text-decoration: none;
+    line-height: 1.45; flex: 1;
+}
+.news-title:hover { color: var(--main-color); text-decoration: underline; }
+.news-meta { display: flex; align-items: center; gap: 5px; flex-wrap: wrap; }
+.news-date { font-size: 12px; color: var(--text-sub); }
+.news-snippet {
+    font-size: 13px; color: var(--text-sub);
+    margin: 0; line-height: 1.6;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* ── 당사 인사이트 바 ── */
+.insight-bar {
+    display: flex; align-items: flex-start; gap: 8px;
+    background-color: #E8F0FE;
+    border-left: 3px solid var(--col-blue);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    padding: 7px 12px;
+}
+.insight-label {
+    font-size: 11px; font-weight: 700; color: var(--col-blue);
+    white-space: nowrap; padding-top: 2px; flex-shrink: 0;
+}
+.insight-text { font-size: 13px; color: var(--text-main); line-height: 1.55; }
+.insight-text strong { color: var(--col-blue); }
+
+.news-link-btn {
+    font-size: 12px; font-weight: 600;
+    color: var(--main-color); text-decoration: none;
+    border: 1px solid var(--main-color);
+    padding: 4px 12px; border-radius: var(--radius-sm);
+    display: inline-block; align-self: flex-start;
+    transition: opacity 0.2s; margin-top: auto;
+}
+.extra-sources {
+    font-size: 11px; color: var(--text-sub);
+    margin: 4px 0 2px;
+}
+.extra-source-link {
+    color: var(--col-blue); text-decoration: none; font-weight: 600;
+}
+.extra-source-link:hover { text-decoration: underline; }
+.news-link-btn:hover { opacity: 0.75; }
+
+/* ── 형광펜 하이라이트 ── */
+mark.hl {
+    background-color: #FFE066;
+    color: inherit;
+    padding: 0 2px;
+    border-radius: 2px;
+    font-weight: 600;
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+    <span class="header-logo">메모리 뉴스 트래커</span>
+    <span class="header-right">최종 업데이트: 2026-06-30 08:43 &nbsp;|&nbsp; 매일 오전 8시 자동 갱신</span>
+</div>
+
+<!-- 탭 내비게이션 -->
+<div class="tab-nav">
+    <div class="tab-item active">
+        📊&nbsp; 핵심 요약
+    </div>
+</div>
+
+<div class="container" style="padding-top:20px; padding-bottom:32px; display:flex; flex-direction:column; gap:16px;">
+
+    <!-- KPI 컬러 카드 -->
+    <div class="kpi-grid">
+        <div class="kpi-item c-blue">
+            <span class="kpi-label">오늘 수집 기사 (1일 이내)</span>
+            <span class="kpi-value c-blue">20건</span>
+        </div>
+        <div class="kpi-item c-orange">
+            <span class="kpi-label">모니터링 키워드</span>
+            <span class="kpi-value c-orange">40개</span>
+        </div>
+        <div class="kpi-item c-green">
+            <span class="kpi-label">업데이트 일시</span>
+            <span class="kpi-value c-green" style="font-size:16px; padding-top:4px;">2026-06-30 08:43</span>
+        </div>
+    </div>
+
+    <!-- 알림 배너 -->
+    <div class="alert-banner">
+        <span class="alert-icon">⚡</span>
+        <span>금일 주요 키워드 &nbsp;
+            <strong>LPDDR</strong> &nbsp;·&nbsp;
+            <strong>HBM</strong> &nbsp;·&nbsp;
+            <strong>DRAM</strong> &nbsp;·&nbsp;
+            <strong>NAND/UFS</strong> &nbsp;
+            기사 집중 수집 완료 — 아래 인사이트 및 기사 목록 확인
+        </span>
+    </div>
+
+    <!-- 종합 인사이트 -->
+    <div class="card">
+        <p class="card-title">모바일 메모리 구매팀 종합 인사이트</p>
+        <div class="summary-box">
+            <div class="summary-line">① 가격 동향 — DRAM <mark class="hl">가격 상승 지속</mark> → LPDDR 단가 선행 반영 가능성 높음, 구매 일정 조기화 및 물량 선점 검토</div><div class="summary-line">② 수급 현황 — <mark class="hl">공급사 제재·규제 리스크 포착</mark> → 의존도 높은 공급사 노출 점검 및 대체 소싱 플랜 선제 준비</div><div class="summary-line">③ 구조적 변화 — <mark class="hl">주요국 무역 규제·관세 리스크 현재 진행 중</mark> → 소싱 다변화 및 비상 조달 플랜 점검, 계약 조건에 불가항력 조항 반영 검토</div>
+        </div>
+    </div>
+
+    <!-- 기사 TOP 20 -->
+    <div class="card">
+        <p class="card-title">주요 기사 TOP 20</p>
+        <div class="news-grid">
+            
+            <div class="news-item">
+                <div class="news-item-header">
+                    <span class="news-rank top">#1</span>
+                    <a href="https://biz.chosun.com/it-science/ict/2026/06/29/SOFG7AFJYBF5HPPAEGQSXI5SRA/" target="_blank" rel="noopener" class="news-title">美 소비자들, 삼성전자·SK하이닉스·마이크론 ‘D램 가격담합’ 주장… 소송 제기 - 조선비즈</a>
+                </div>
+                <div class="news-meta">
+                    <span class="badge badge-pending">Chosunbiz</span>
+                    <span class="news-date">11시간 전</span>
+                    <span class="badge badge-success">마이크론</span><span class="badge badge-success">SK하이닉스</span><span class="badge badge-success">메모리</span>
+                </div>
+                <p class="news-snippet">삼성전자·SK하이닉스·마이크론이 미국에서 D램 가격 담합 의혹으로 집단소송을 당했다. 원고 측은 이 3사가 인공지능(AI)용 고대역폭메모리(HBM) 생산 확대를 명분으로...</p>
+                <div class="insight-bar">
+                    <span class="insight-label">당사 인사이트</span>
+                    <span class="insight-text"><strong>HBM</strong> <strong>Capa</strong> 쏠림 → <strong>LP<strong>DDR</strong></strong>·<strong>UFS</strong> <strong>수급</strong> <strong>타이트</strong> 가능성, 선제 점검 필요</span>
+                </div>
+                
+                <a href="https://biz.chosun.com/it-science/ict/2026/06/29/SOFG7AFJYBF5HPPAEGQSXI5SRA/" target="_blank" rel="noopener" class="news-link-btn">원문 보기 →</a>
+            </div>
+            <div class="news-item">
+                <div class="news-item-header">
+                    <span class="news-rank top">#2</span>
+                    <a href="https://www.topstarnews.net/news/articleView.html?idxno=16116867" target="_blank" rel="noopener" class="news-title">[산업분석] 삼성전자·SK하이닉스, 스마트폰 10% 감소에도 LPDDR 부족</a>
+                </div>
+                <div class="news-meta">
+                    <span class="badge badge-pending">TopStarNews</span>
+                    <span class="news-date">18시간 전</span>
+                    <span class="badge badge-success">LPDDR</span><span class="badge badge-success">SK하이닉스</span><span class="badge badge-success">메모리</span>
+                </div>
+                <p class="news-snippet">스마트폰·PC 출하 감소 우려에도 LPDDR 공급 부족이 이어질 수 있다는 분석이 나왔다. 하나증권은 Apple 판가 인상 이슈가 메모리 수요 우려를 키웠지만 Nvidia 등 AI...</p>
+                <div class="insight-bar">
+                    <span class="insight-label">당사 인사이트</span>
+                    <span class="insight-text"><strong>LP<strong>DDR</strong></strong> <strong>단가</strong> <strong>상승</strong> → 차기 모델 <strong>BOM</strong> 영향 분석 및 물량 조기 확보 검토</span>
+                </div>
+                
+                <a href="https://www.topstarnews.net/news/articleView.html?idxno=16116867" target="_blank" rel="noopener" class="news-link-btn">원문 보기 →</a>
+            </div>
+            <div class="news-item">
+                <div class="news-item-header">
+                    <span class="news-rank top">#3</span>
+                    <a href="https://www.etnews.com/20260629000214" target="_blank" rel="noopener" class="news-title">[테크 차이나] 애플, 중국 CXMT 메모리 도입 검토…글로벌 DRAM 시장 판도 흔드나</a>
+                </div>
+                <div class="news-meta">
+                    <span class="badge badge-pending">전자신문</span>
+                    <span class="news-date">21시간 전</span>
+                    <span class="badge badge-success">DRAM</span><span class="badge badge-success">메모리</span><span class="badge badge-success">CXMT</span>
+                </div>
+                <p class="news-snippet">애플이 중국 메모리 반도체 기업 창신메모리테크놀로지스(CXMT)를 새로운 DRAM 공급업체로 검토하고 있다는 소식이 전해지면서 글로벌 메모리 반도체 시장 경쟁 구도에...</p>
+                <div class="insight-bar">
+                    <span class="insight-label">당사 인사이트</span>
+                    <span class="insight-text"><strong>DRAM</strong> 시황 변화 → <strong>LP<strong>DDR</strong></strong> <strong>가격</strong> 방향성 영향, 구매 계획 검토 시 참고</span>
+                </div>
+                <div class="extra-sources">동일 사건 2개 출처: <a href="https://www.weeklypost.kr/news/articleView.html?idxno=11550" target="_blank" rel="noopener" class="extra-source-link">위클리포스트</a> · <a href="https://www.speconomy.com/news/articleView.html?idxno=415424" target="_blank" rel="noopener" class="extra-source-link">스페셜경제</a></div>
+                <a href="https://www.etnews.com/20260629000214" target="_blank" rel="noopener" class="news-link-btn">원문 보기 →</a>
+            </div>
+            <div class="news-item">
+                <div class="news-item-header">
+                    <span class="news-rank">#4</span>
+                    <a href="https://www.4th.kr/news/articleView.html?idxno=2113910" target="_blank" rel="noopener" class="news-title">삼성·SK·마이크론, 美서 DRAM 가격담합 집단소송 피소</a>
+                </div>
+                <div class="news-meta">
+                    <span class="badge badge-pending">포쓰저널</span>
+                    <span class="news-date">10시간 전</span>
+                    <span class="badge badge-success">DRAM</span><span class="badge badge-success">마이크론</span><span class="badge badge-success">SK하이닉스</span>
+                </div>
+                <p class="news-snippet">인공지능(AI) 확산으로 D램(DRAM) 가격이 사상 최고 수준까지 치솟은 가운데 삼성전자와 SK하이닉스, 미국 마이크론이 공급을 인위적으로 제한해 가격을 끌어올렸다는...</p>
+                <div class="insight-bar">
+                    <span class="insight-label">당사 인사이트</span>
+                    <span class="insight-text"><strong>DRAM</strong> 시황 변화 → <strong>LP<strong>DDR</strong></strong> <strong>가격</strong> 방향성 영향, 구매 계획 검토 시 참고</span>
+                </div>
+                <div class="extra-sources">동일 사건 8개 출처: <a href="https://www.g-enews.com/article/Industry/2026/06/202606292104522135cd0bfacc1c_1" target="_blank" rel="noopener" class="extra-source-link">글로벌이코노믹</a> · <a href="http://www.opinionnews.co.kr/news/articleView.html?idxno=140793" target="_blank" rel="noopener" class="extra-source-link">오피니언뉴스</a> · <a href="https://www.etoday.co.kr/news/view/2598475" target="_blank" rel="noopener" class="extra-source-link">이투데이</a> · <a href="https://www.mk.co.kr/news/world/12086032" target="_blank" rel="noopener" class="extra-source-link">매일경제</a> · <a href="https://www.newspim.com/news/view/20260630000043" target="_blank" rel="noopener" class="extra-source-link">뉴스핌</a> · <a href="https://www.dt.co.kr/article/12070154" target="_blank" rel="noopener" class="extra-source-link">www.dt.co.kr</a> · <a href="https://news.kbs.co.kr/news/view.do?ncd=8597616" target="_blank" rel="noopener" class="extra-source-link">KBS 뉴스</a> · <a href="https://www.news1.kr/world/usa-canada/6212144" target="_blank" rel="noopener" class="extra-source-link">뉴스1</a></div>
+                <a href="https://www.4th.kr/news/articleView.html?idxno=2113910" target="_blank" rel="noopener" class="news-link-btn">원문 보기 →</a>
+            </div>
+            <div class="news-item">
+                <div class="news-item-header">
+                    <span class="news-rank">#5</span>
+                    <a href="https://www.g-enews.com/article/Industry/2026/06/202606292104522135cd0bfacc1c_1" target="_blank" rel="noopener" class="news-title">美소비자들, 삼성·SK하이닉스·마이크론 집단소송…&quot;메모리 가격 담합&quot;</a>
+                </div>
+                <div class="news-meta">
+                    <span class="badge badge-pending">글로벌이코노믹</span>
+                    <span class="news-date">12시간 전</span>
+                    <span class="badge badge-success">마이크론</span><span class="badge badge-success">SK하이닉스</span><span class="badge badge-success">메모리</span>
+                </div>
+                <p class="news-snippet">미국 소비자들과 중소 PC 업체들이 삼성전자와 SK하이닉스, 마이크론 등 주요 메모리 반도체 기업들을 상대로 가격 담합 의혹을 제기하며 집단소송에 나섰다.</p>
+                <div class="insight-bar">
+                    <span class="insight-label">당사 인사이트</span>
+                    <span class="insight-text">경쟁 <strong>공급</strong>사 리스크 발생 → 의존도 점검 및 대체 <strong>공급</strong>처(삼성·SK) 확보 방안 검토</span>
+                </div>
+                
+                <a href="https://www.g-enews.com/article/Industry/2026/06/202606292104522135cd0bfacc1c_1" target="_blank" rel="noopener" class="news-link-btn">원문 보기 →</a>
+            </div>
+            <div class="news-item">
+                <div class="news-item-header">
+                    <span class="news-rank">#6</span>
+                    <a href="http://www.opinionnews.co.kr/news/articleView.html?idxno=140793" target="_blank" rel="noopener" class="news-title">美 소비자, 삼성전자·SK하이닉스·마이크론 상대로 집단소송</a>
+                </div>
+                <div class="news-meta">
+                    <span class="badge badge-pending">오피니언뉴스</span>
+                    <span class="news-date">2시간 전</span>
+                    <span class="badge badge-success">마이크론</span><span class="badge badge-success">SK하이닉스</span><span class="badge badge-success">메모리</span>
+                </div>
+                <p class="news-snippet">[오피니언뉴스=김지은 기자] 미국 일부 소비자들이 삼성전자와 SK하이닉스, 마이크론 등 메모리 기업들을 상대로 집단소송을 제기했다.29일(현지시간) 미국 기술 전문...</p>
+                <div class="insight-bar">
+                    <span class="insight-label">당사 인사이트</span>
+                    <span class="insight-text">경쟁 <strong>공급</strong>사 리스크 발생 → 의존도 점검 및 대체 <strong>공급</strong>처(삼성·SK) 확보 방안 검토</span>
+                </div>
+                
+                <a href="http://www.opinionnews.co.kr/news/articleView.html?idxno=140793" target="_blank" rel="noopener" class="news-link-btn">원문 보기 →</a>
+            </div>
+            <div class="news-item">
+                <div class="news-item-header">
+                    <span class="news-rank">#7</span>
+                    <a href="https://www.digitaltoday.co.kr/news/articleView.html?idxno=679464" target="_blank" rel="noopener" class="news-title">중국 CXMT, 텐센트와 서버 DRAM 29.4억달러치 장기 공급 계약</a>
+                </div>
+                <div class="news-meta">
+                    <span class="badge badge-pending">디지털투데이</span>
+                    <span class="news-date">3시간 전</span>
+                    <span class="badge badge-success">DRAM</span><span class="badge badge-success">메모리</span><span class="badge badge-success">CXMT</span>
+                </div>
+                <p class="news-snippet">[디지털투데이 황치규 기자]중국 메모리 반도체 업체 창신메모리테크놀로지스(CXMT)가 텐센트와 200억위안(약 29.4억달러) 이상 규모 서버용 DRAM 장기 공급 계약을...</p>
+                <div class="insight-bar">
+                    <span class="insight-label">당사 인사이트</span>
+                    <span class="insight-text"><strong>DRAM</strong> 시황 변화 → <strong>LP<strong>DDR</strong></strong> <strong>가격</strong> 방향성 영향, 구매 계획 검토 시 참고</span>
+                </div>
+                <div class="extra-sources">동일 사건 3개 출처: <a href="https://www.weeklypost.kr/news/articleView.html?idxno=11551" target="_blank" rel="noopener" class="extra-source-link">위클리포스트</a> · <a href="https://biz.chosun.com/it-science/ict/2026/06/29/BVEKNLF2NNAHDA52GX7766STGQ/" target="_blank" rel="noopener" class="extra-source-link">Chosunbiz</a> · <a href="https://www.newsway.co.kr/news/view?ud=2026062920271690156" target="_blank" rel="noopener" class="extra-source-link">뉴스웨이</a></div>
+                <a href="https://www.digitaltoday.co.kr/news/articleView.html?idxno=679464" target="_blank" rel="noopener" class="news-link-btn">원문 보기 →</a>
+            </div>
+            <div class="news-item">
+                <div class="news-item-header">
+                    <span class="news-rank">#8</span>
+                    <a href="https://www.weeklypost.kr/news/articleView.html?idxno=11551" target="_blank" rel="noopener" class="news-title">CXMT, 텐센트와 30억 달러 규모 DRAM 공급 계약 체결</a>
+                </div>
+                <div class="news-meta">
+                    <span class="badge badge-pending">위클리포스트</span>
+                    <span class="news-date">4시간 전</span>
+                    <span class="badge badge-success">DRAM</span><span class="badge badge-success">메모리</span><span class="badge badge-success">Memory</span>
+                </div>
+                <p class="news-snippet">중국 메모리 반도체 기업 CXMT(ChangXin Memory Technologies)가 텐센트와 약 30억 달러(약 200억 위안) 규모의 장기 DRAM 공급 계약을 체결한 것으로 알려졌다.</p>
+                <div class="insight-bar">
+                    <span class="insight-label">당사 인사이트</span>
+                    <span class="insight-text"><strong>DRAM</strong> 시황 변화 → <strong>LP<strong>DDR</strong></strong> <strong>가격</strong> 방향성 영향, 구매 계획 검토 시 참고</span>
+                </div>
+                
+                <a href="https://www.weeklypost.kr/news/articleView.html?idxno=11551" target="_blank" rel="noopener" class="news-link-btn">원문 보기 →</a>
+            </div>
+            <div class="news-item">
+                <div class="news-item-header">
+                    <span class="news-rank">#9</span>
+                    <a href="https://www.weeklypost.kr/news/articleView.html?idxno=11550" target="_blank" rel="noopener" class="news-title">애플, CXMT 메모리 도입 쉽지 않네~</a>
+                </div>
+                <div class="news-meta">
+                    <span class="badge badge-pending">위클리포스트</span>
+                    <span class="news-date">4시간 전</span>
+                    <span class="badge badge-success">DRAM</span><span class="badge badge-success">메모리</span><span class="badge badge-success">Memory</span>
+                </div>
+                <p class="news-snippet">애플이 중국 메모리 업체 CXMT(ChangXin Memory Technologies)에서 DRAM을 조달하는 방안을 검토하고 있다는 관측이 나오고 있지만 실제 공급으로 이어질 가능성은...</p>
+                <div class="insight-bar">
+                    <span class="insight-label">당사 인사이트</span>
+                    <span class="insight-text"><strong>DRAM</strong> 시황 변화 → <strong>LP<strong>DDR</strong></strong> <strong>가격</strong> 방향성 영향, 구매 계획 검토 시 참고</span>
+                </div>
+                
+                <a href="https://www.weeklypost.kr/news/articleView.html?idxno=11550" target="_blank" rel="noopener" class="news-link-btn">원문 보기 →</a>
+            </div>
+            <div class="news-item">
+                <div class="news-item-header">
+                    <span class="news-rank">#10</span>
+                    <a href="https://kr.beincrypto.com/samsung-sk-hynix-dram-memory-chip-lawsuit/" target="_blank" rel="noopener" class="news-title">메모리칩 대기업, DRAM 가격 700% 급등 소송</a>
+                </div>
+                <div class="news-meta">
+                    <span class="badge badge-pending">BeInCrypto</span>
+                    <span class="news-date">8시간 전</span>
+                    <span class="badge badge-success">DRAM</span><span class="badge badge-success">마이크론</span><span class="badge badge-success">SK하이닉스</span>
+                </div>
+                <p class="news-snippet">미국의 반독점 소송이 삼성, SK하이닉스, 마이크론이 DRAM 가격을 인상했다고 주장합니다. 이 사건은 세 회사가 6천5백억 달러 인공지능 투자 발표 며칠 전에 발생...</p>
+                <div class="insight-bar">
+                    <span class="insight-label">당사 인사이트</span>
+                    <span class="insight-text"><strong>DRAM</strong> <strong>가격</strong> <strong>상승</strong> → <strong>LP<strong>DDR</strong></strong> <strong>단가</strong> 선행 반영 가능, 구매 일정 <strong>조기화</strong> 검토</span>
+                </div>
+                
+                <a href="https://kr.beincrypto.com/samsung-sk-hynix-dram-memory-chip-lawsuit/" target="_blank" rel="noopener" class="news-link-btn">원문 보기 →</a>
+            </div>
+            <div class="news-item">
+                <div class="news-item-header">
+                    <span class="news-rank">#11</span>
+                    <a href="https://www.alphabiz.co.kr/news/articleView.html?idxno=161915" target="_blank" rel="noopener" class="news-title">Samsung Electronics, SK Hynix and Micron Sued in U.S. Over Alleged DRAM Price-Fixing</a>
+                </div>
+                <div class="news-meta">
+                    <span class="badge badge-pending">알파경제</span>
+                    <span class="news-date">2시간 전</span>
+                    <span class="badge badge-success">DRAM</span><span class="badge badge-success">hynix</span><span class="badge badge-success">micron</span>
+                </div>
+                <p class="news-snippet">[Alpha Biz= Paul Lee] Samsung Electronics, SK Hynix and Micron Technology have been sued i.</p>
+                <div class="insight-bar">
+                    <span class="insight-label">당사 인사이트</span>
+                    <span class="insight-text"><strong>DRAM</strong> 시황 변화 → <strong>LP<strong>DDR</strong></strong> <strong>가격</strong> 방향성 영향, 구매 계획 검토 시 참고</span>
+                </div>
+                <div class="extra-sources">동일 사건 4개 출처: <a href="https://en.sedaily.com/international/2026/06/29/samsung-sk-hynix-micron-sued-in-us-over-memory-price-fixing" target="_blank" rel="noopener" class="extra-source-link">Seoul Economic Daily</a> · <a href="https://www.mk.co.kr/en/world/12086032" target="_blank" rel="noopener" class="extra-source-link">매일경제</a> · <a href="https://www.asiae.co.kr/en/article/2026062921095339690" target="_blank" rel="noopener" class="extra-source-link">아시아경제</a> · <a href="https://news.nate.com/view/20260629n28216?mid=n1101" target="_blank" rel="noopener" class="extra-source-link">네이트</a></div>
+                <a href="https://www.alphabiz.co.kr/news/articleView.html?idxno=161915" target="_blank" rel="noopener" class="news-link-btn">원문 보기 →</a>
+            </div>
+            <div class="news-item">
+                <div class="news-item-header">
+                    <span class="news-rank">#12</span>
+                    <a href="https://www.news1.kr/it-science/mobile/6211707" target="_blank" rel="noopener" class="news-title">&quot;메모리 탓?&quot; 애플 가격 인상 논란…램크루지·中 메모리 로비 역풍</a>
+                </div>
+                <div class="news-meta">
+                    <span class="badge badge-pending">뉴스1</span>
+                    <span class="news-date">2시간 전</span>
+                    <span class="badge badge-success">메모리</span><span class="badge badge-success">가격</span><span class="badge badge-success">애플</span>
+                </div>
+                <p class="news-snippet">애플이 인공지능(AI) 데이터센터 확산으로 급등한 메모리와 저장장치 비용으로 인해 맥북과 아이패드 등의 가격을 인상한다고 밝혔다. 2026.6.26 c 뉴스1 박정호 기자...</p>
+                <div class="insight-bar">
+                    <span class="insight-label">당사 인사이트</span>
+                    <span class="insight-text">메모리 업황 참고 → 주간 시황 보고 및 분기 구매 계획 수립 시 배경 자료로 활용</span>
+                </div>
+                <div class="extra-sources">동일 사건 2개 출처: <a href="https://biz.chosun.com/it-science/ict/2026/06/29/RS53AZPSXREHHECBMN2AXEZU2I/" target="_blank" rel="noopener" class="extra-source-link">Chosunbiz</a> · <a href="https://www.hani.co.kr/arti/international/america/1265694.html" target="_blank" rel="noopener" class="extra-source-link">한겨레</a></div>
+                <a href="https://www.news1.kr/it-science/mobile/6211707" target="_blank" rel="noopener" class="news-link-btn">원문 보기 →</a>
+            </div>
+            <div class="news-item">
+                <div class="news-item-header">
+                    <span class="news-rank">#13</span>
+                    <a href="https://www.edaily.co.kr/News/Read?newsId=04309926645486640&amp;mediaCodeNo=257" target="_blank" rel="noopener" class="news-title">HBM 빈틈 파고든 中 메모리…글로벌 공급망 흔드는 변수 되나</a>
+                </div>
+                <div class="news-meta">
+                    <span class="badge badge-pending">이데일리</span>
+                    <span class="news-date">17시간 전</span>
+                    <span class="badge badge-success">SK하이닉스</span><span class="badge badge-success">메모리</span><span class="badge badge-success">HBM</span>
+                </div>
+                <p class="news-snippet">인공지능(AI) 투자 확대로 메모리 공급난이 장기화하면서 중국 메모리 업체들이 글로벌 공급망의 새로운 변수로 부상하고 있다. 삼성전자와 SK하이닉스가 고대역폭...</p>
+                <div class="insight-bar">
+                    <span class="insight-label">당사 인사이트</span>
+                    <span class="insight-text"><strong>HBM</strong> <strong>Capa</strong> 쏠림 → <strong>LP<strong>DDR</strong></strong>·<strong>UFS</strong> <strong>수급</strong> <strong>타이트</strong> 가능성, 선제 점검 필요</span>
+                </div>
+                
+                <a href="https://www.edaily.co.kr/News/Read?newsId=04309926645486640&amp;mediaCodeNo=257" target="_blank" rel="noopener" class="news-link-btn">원문 보기 →</a>
+            </div>
+            <div class="news-item">
+                <div class="news-item-header">
+                    <span class="news-rank">#14</span>
+                    <a href="https://en.sedaily.com/international/2026/06/29/samsung-sk-hynix-micron-sued-in-us-over-memory-price-fixing" target="_blank" rel="noopener" class="news-title">Samsung, SK hynix, Micron Sued in US Over Memory Price Fixing</a>
+                </div>
+                <div class="news-meta">
+                    <span class="badge badge-pending">Seoul Economic Daily</span>
+                    <span class="news-date">15시간 전</span>
+                    <span class="badge badge-success">hynix</span><span class="badge badge-success">micron</span><span class="badge badge-success">Memory</span>
+                </div>
+                <p class="news-snippet">Samsung, SK hynix and Micron face a US lawsuit alleging memory price fixing that drove D-RAM prices up 700% over four years, with consumers seeking...</p>
+                <div class="insight-bar">
+                    <span class="insight-label">당사 인사이트</span>
+                    <span class="insight-text">경쟁 <strong>공급</strong>사 리스크 발생 → 의존도 점검 및 대체 <strong>공급</strong>처(삼성·SK) 확보 방안 검토</span>
+                </div>
+                
+                <a href="https://en.sedaily.com/international/2026/06/29/samsung-sk-hynix-micron-sued-in-us-over-memory-price-fixing" target="_blank" rel="noopener" class="news-link-btn">원문 보기 →</a>
+            </div>
+            <div class="news-item">
+                <div class="news-item-header">
+                    <span class="news-rank">#15</span>
+                    <a href="https://simplywall.st/ko/stocks/us/tech/nasdaq-aapl/apple/news/38997f56e393e0d5/amp" target="_blank" rel="noopener" class="news-title">애플(AAPL), 블랙리스트 오른 중국 CXMT 메모리 칩 허가 요청 이유는</a>
+                </div>
+                <div class="news-meta">
+                    <span class="badge badge-pending">Simply Wall Street</span>
+                    <span class="news-date">4시간 전</span>
+                    <span class="badge badge-success">메모리</span><span class="badge badge-success">CXMT</span><span class="badge badge-success">apple</span>
+                </div>
+                <p class="news-snippet">Apple이 미국 정부를 상대로, 미국 제재 명단에 오른 중국 메모리 업체 CXMT로부터 메모리 칩을 구매할 수 있도록 허가를 요청하고 있다. 배경에는 글로벌 AI 인프라...</p>
+                <div class="insight-bar">
+                    <span class="insight-label">당사 인사이트</span>
+                    <span class="insight-text"><strong>공급</strong>망 리스크 포착 → <strong>수급</strong> 차질 대비 안전 <strong>재고</strong> 수준 긴급 점검</span>
+                </div>
+                <div class="extra-sources">동일 사건 1개 출처: <a href="https://www.freezine.co.kr/news/articleView.html?idxno=16519" target="_blank" rel="noopener" class="extra-source-link">프리진경제</a></div>
+                <a href="https://simplywall.st/ko/stocks/us/tech/nasdaq-aapl/apple/news/38997f56e393e0d5/amp" target="_blank" rel="noopener" class="news-link-btn">원문 보기 →</a>
+            </div>
+            <div class="news-item">
+                <div class="news-item-header">
+                    <span class="news-rank">#16</span>
+                    <a href="https://www.edaily.co.kr/News/Read?newsId=05188966645486640&amp;mediaCodeNo=257" target="_blank" rel="noopener" class="news-title">&quot;中 CXMT, 텐센트에 4조원대 D램 공급&quot;…삼성·SK하이닉스 추격 속도</a>
+                </div>
+                <div class="news-meta">
+                    <span class="badge badge-pending">이데일리</span>
+                    <span class="news-date">14시간 전</span>
+                    <span class="badge badge-success">SK하이닉스</span><span class="badge badge-success">메모리</span><span class="badge badge-success">CXMT</span>
+                </div>
+                <p class="news-snippet">중국 메모리반도체 업체 창신메모리테크놀로지(CXMT)가 중국 빅테크 텐센트와 대규모 D램 장기 공급 계약을 맺은 것으로 전해졌다. 인공지능(AI) 확산으로 서버용...</p>
+                <div class="insight-bar">
+                    <span class="insight-label">당사 인사이트</span>
+                    <span class="insight-text"><strong>SK하이닉스</strong> 전략 변화 → <strong>LP<strong>DDR</strong></strong>·<strong>HBM</strong> <strong>공급</strong> 조건 및 중장기 파트너십 영향 모니터링</span>
+                </div>
+                <div class="extra-sources">동일 사건 1개 출처: <a href="https://biz.sbs.co.kr/amp/article/20000319563" target="_blank" rel="noopener" class="extra-source-link">biz.sbs.co.kr.</a></div>
+                <a href="https://www.edaily.co.kr/News/Read?newsId=05188966645486640&amp;mediaCodeNo=257" target="_blank" rel="noopener" class="news-link-btn">원문 보기 →</a>
+            </div>
+            <div class="news-item">
+                <div class="news-item-header">
+                    <span class="news-rank">#17</span>
+                    <a href="https://www.news1.kr/amp/industry/electronics/6211396" target="_blank" rel="noopener" class="news-title">&quot;싼 중국산 쓰겠다는 애플, 망조 드나&quot;…CXMT 제품가, 삼전·하닉과 비슷</a>
+                </div>
+                <div class="news-meta">
+                    <span class="badge badge-pending">뉴스1</span>
+                    <span class="news-date">19시간 전</span>
+                    <span class="badge badge-success">SK하이닉스</span><span class="badge badge-success">메모리</span><span class="badge badge-success">CXMT</span>
+                </div>
+                <p class="news-snippet">애플이 삼성전자와 SK하이닉스 대신 저가의 중국산 메모리 업체와 공급 계약을 검토하는 것으로 알려졌지만, 정작 중국 업체의 DDR5 메모리 가격이 삼성전자·SK하 …</p>
+                <div class="insight-bar">
+                    <span class="insight-label">당사 인사이트</span>
+                    <span class="insight-text"><strong>DRAM</strong> <strong>가격</strong> <strong>하락</strong> → <strong>LP<strong>DDR</strong></strong> <strong>단가</strong> 인하 요인, <strong>공급</strong>사 재<strong>협상</strong> 타이밍 모니터링</span>
+                </div>
+                
+                <a href="https://www.news1.kr/amp/industry/electronics/6211396" target="_blank" rel="noopener" class="news-link-btn">원문 보기 →</a>
+            </div>
+            <div class="news-item">
+                <div class="news-item-header">
+                    <span class="news-rank">#18</span>
+                    <a href="https://biz.sbs.co.kr/amp/article/20000319563" target="_blank" rel="noopener" class="news-title">中 창신메모리, 텐센트에 대규모 D램 공급 계약</a>
+                </div>
+                <div class="news-meta">
+                    <span class="badge badge-pending">biz.sbs.co.kr.</span>
+                    <span class="news-date">5시간 전</span>
+                    <span class="badge badge-success">SK하이닉스</span><span class="badge badge-success">메모리</span><span class="badge badge-success">CXMT</span>
+                </div>
+                <p class="news-snippet">삼성전자·SK하이닉스가 주도하는 글로벌 메모리반도체 업계에 도전장을 내민 중국 창신메모리테크놀로지(CXMT)가 자국 텐센트 홀딩스에 200억 위안(약 4조5천억원)...</p>
+                <div class="insight-bar">
+                    <span class="insight-label">당사 인사이트</span>
+                    <span class="insight-text"><strong>SK하이닉스</strong> 전략 변화 → <strong>LP<strong>DDR</strong></strong>·<strong>HBM</strong> <strong>공급</strong> 조건 및 중장기 파트너십 영향 모니터링</span>
+                </div>
+                
+                <a href="https://biz.sbs.co.kr/amp/article/20000319563" target="_blank" rel="noopener" class="news-link-btn">원문 보기 →</a>
+            </div>
+            <div class="news-item">
+                <div class="news-item-header">
+                    <span class="news-rank">#19</span>
+                    <a href="https://www.etoday.co.kr/news/view/2597701" target="_blank" rel="noopener" class="news-title">씨엠티엑스, 삼성전자ㆍ국내 유일 TSMC 공급...낸드 가격 75% 급등에 라인 풀가동</a>
+                </div>
+                <div class="news-meta">
+                    <span class="badge badge-pending">이투데이</span>
+                    <span class="news-date">20시간 전</span>
+                    <span class="badge badge-success">낸드</span><span class="badge badge-success">메모리</span><span class="badge badge-success">가격</span>
+                </div>
+                <p class="news-snippet">메모리 반도체 업황 회복으로 생산 확대에 나선 씨엠티엑스의 기업 로고와 슬로건이 29일 한 이미지에 나타나 있다.국내 유일 반도체 원자재인 잉...</p>
+                <div class="insight-bar">
+                    <span class="insight-label">당사 인사이트</span>
+                    <span class="insight-text"><strong>NAND</strong> <strong>가격</strong> 반등 → <strong>UFS</strong> 원가 <strong>상승</strong> 대비, <strong>재고</strong> 수준 및 중장기 계약 점검</span>
+                </div>
+                
+                <a href="https://www.etoday.co.kr/news/view/2597701" target="_blank" rel="noopener" class="news-link-btn">원문 보기 →</a>
+            </div>
+            <div class="news-item">
+                <div class="news-item-header">
+                    <span class="news-rank">#20</span>
+                    <a href="https://www.tikr.com/ko/blog/mu-sndk-micron-vs-sandisk-which-memory-stock-has-more-upside-as-ai-demand-surges" target="_blank" rel="noopener" class="news-title">Micron vs SanDisk: Which Memory Stock Has More Upside as AI Demand Surges?</a>
+                </div>
+                <div class="news-meta">
+                    <span class="badge badge-pending">TIKR.com</span>
+                    <span class="news-date">12시간 전</span>
+                    <span class="badge badge-success">micron</span><span class="badge badge-success">Memory</span><span class="badge badge-success">sandisk</span>
+                </div>
+                <p class="news-snippet">Micron and SanDisk are both riding the AI memory wave, but one has a critical edge. Here is what the data says about which stock has more room to run.</p>
+                <div class="insight-bar">
+                    <span class="insight-label">당사 인사이트</span>
+                    <span class="insight-text">경쟁 <strong>공급</strong>사(Micron·Kioxia·SanDisk) 실적 개선 → <strong>협상</strong>력 강화 전 조달 비중 재배분 검토</span>
+                </div>
+                <div class="extra-sources">동일 사건 1개 출처: <a href="https://www.tikr.com/ko/blog/mu-sndk-micron-vs-sandisk-which-memory-stock-has-more-upside-as-ai-demand-surges?" target="_blank" rel="noopener" class="extra-source-link">TIKR.com</a></div>
+                <a href="https://www.tikr.com/ko/blog/mu-sndk-micron-vs-sandisk-which-memory-stock-has-more-upside-as-ai-demand-surges" target="_blank" rel="noopener" class="news-link-btn">원문 보기 →</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 모니터링 키워드 (하단) -->
+    <div class="card">
+        <p class="card-title">모니터링 키워드</p>
+        <div class="flex-gap">
+            <span class="choice-chip active">LPDDR</span><span class="choice-chip active">DRAM</span><span class="choice-chip active">UFS</span><span class="choice-chip active">NAND</span><span class="choice-chip active">디램</span><span class="choice-chip active">낸드</span><span class="choice-chip active">마이크론</span><span class="choice-chip active">SK하이닉스</span><span class="choice-chip active">hynix</span><span class="choice-chip active">skhynix</span><span class="choice-chip active">micron</span><span class="choice-chip active">키오시아</span><span class="choice-chip active">Kioxia</span><span class="choice-chip active">kioxia</span><span class="choice-chip active">메모리</span><span class="choice-chip active">Memory</span><span class="choice-chip active">YMTC</span><span class="choice-chip active">CXMT</span><span class="choice-chip active">HBM</span><span class="choice-chip active">DDR</span><span class="choice-chip active">가격</span><span class="choice-chip active">공급</span><span class="choice-chip active">TrendForce</span><span class="choice-chip active">trendforce</span><span class="choice-chip active">모바일</span><span class="choice-chip active">mobile</span><span class="choice-chip active">스마트폰</span><span class="choice-chip active">apple</span><span class="choice-chip active">애플</span><span class="choice-chip active">샤오미</span><span class="choice-chip active">XIAOMI</span><span class="choice-chip active">huawei</span><span class="choice-chip active">oppo</span><span class="choice-chip active">vivo</span><span class="choice-chip active">화웨이</span><span class="choice-chip active">오포</span><span class="choice-chip active">비보</span><span class="choice-chip active">삼성전자</span><span class="choice-chip active">sandisk</span><span class="choice-chip active">샌디스크</span>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
