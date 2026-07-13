@@ -232,28 +232,34 @@ body {
     transition: opacity 0.2s; margin-top: auto;
 }
 .extra-sources {
-    margin: 6px 0 4px;
-    padding: 6px 10px;
+    margin: 8px 0 4px;
+    padding: 8px 12px;
     background: var(--bg-color);
     border-radius: var(--radius-sm);
-    border: 1px solid var(--border-color);
+    border-left: 3px solid var(--col-blue);
 }
 .extra-sources-label {
-    font-size: 11px; font-weight: 600;
-    color: var(--text-sub); display: block; margin-bottom: 4px;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.02em;
+    color: var(--col-blue); display: block; margin-bottom: 5px;
 }
 .extra-sources-links {
-    display: flex; flex-direction: column; gap: 3px;
+    display: flex; flex-direction: column; gap: 4px;
 }
-.extra-source-link {
-    font-size: 12px; color: var(--main-color);
+.extra-source-row {
+    display: flex; align-items: baseline; gap: 6px;
     text-decoration: none; line-height: 1.4;
 }
-.extra-source-link:hover { text-decoration: underline; }
-.extra-source-link {
-    color: var(--col-blue); text-decoration: none; font-weight: 600;
+.extra-src-badge {
+    font-size: 10px; font-weight: 700; white-space: nowrap;
+    color: var(--col-blue);
+    border: 1px solid var(--col-blue);
+    border-radius: 3px; padding: 1px 5px;
+    flex-shrink: 0;
 }
-.extra-source-link:hover { text-decoration: underline; }
+.extra-src-title {
+    font-size: 12px; color: var(--text-sub);
+}
+.extra-source-row:hover .extra-src-title { color: var(--main-color); text-decoration: underline; }
 .news-link-btn:hover { opacity: 0.75; }
 
 /* ── 형광펜 하이라이트 ── */
@@ -270,7 +276,7 @@ mark.hl {
 
 <div class="header">
     <span class="header-logo">메모리 뉴스 트래커</span>
-    <span class="header-right">최종 업데이트: 2026-07-13 07:49 &nbsp;|&nbsp; 매일 오전 8시 자동 갱신</span>
+    <span class="header-right">최종 업데이트: 2026-07-14 08:05 &nbsp;|&nbsp; 매일 오전 8시 자동 갱신</span>
 </div>
 
 <!-- 탭 내비게이션 -->
@@ -294,7 +300,7 @@ mark.hl {
         </div>
         <div class="kpi-item c-green">
             <span class="kpi-label">업데이트 일시</span>
-            <span class="kpi-value c-green" style="font-size:16px; padding-top:4px;">2026-07-13 07:49</span>
+            <span class="kpi-value c-green" style="font-size:16px; padding-top:4px;">2026-07-14 08:05</span>
         </div>
     </div>
 
@@ -326,254 +332,254 @@ mark.hl {
             <div class="news-item">
                 <div class="news-item-header">
                     <span class="news-rank top">#1</span>
-                    <a href="https://www.hani.co.kr/arti/economy/marketing/1267873.html" target="_blank" rel="noopener" class="news-title">40조 쥔 하이닉스, 메모리 증설 속도전…삼성·마이크론·CXMT·TSMC “더 빨리”</a>
+                    <a href="https://www.businesskorea.co.kr/news/articleView.html?idxno=272963" target="_blank" rel="noopener" class="news-title">Kioxia Declares Challenge to Korean Memory Giants</a>
                 </div>
                 <div class="news-meta">
-                    <span class="badge badge-pending">한겨레</span>
-                    <span class="news-date">7시간 전</span>
-                    <span class="badge badge-success">마이크론</span><span class="badge badge-success">메모리</span><span class="badge badge-success">CXMT</span>
+                    <span class="badge badge-pending">Businesskorea</span>
+                    <span class="news-date">11시간 전</span>
+                    <span class="badge badge-success">DRAM</span><span class="badge badge-success">NAND</span><span class="badge badge-success">Kioxia</span>
                 </div>
-                <p class="news-snippet">에스케이(SK)하이닉스가 미국 나스닥 상장으로 확보하는 자금 40조원으로 인공지능(AI) 시대 메모리 증설 경쟁에 본격적으로 뛰어든다. 메모리 공급 부족이 장기화할...</p>
+                <p class="news-snippet">The seismic shift in the global memory semiconductor market is spreading beyond DRAM (HBM) into the realm of NAND flash. Japan's momentum to recreate the...</p>
                 <div class="insight-bar">
                     <span class="insight-label">당사 인사이트</span>
-                    <span class="insight-text">경쟁 <strong>공급</strong>사 리스크 발생 → 의존도 점검 및 삼성·SK 대체 <strong>공급</strong>처 확보 방안 즉시 검토</span>
+                    <span class="insight-text"><strong>HBM</strong> 동향이 <strong>공급</strong>사 <strong>Capa</strong> 배분에 영향 → <strong>LP<strong>DDR</strong></strong>·<strong>UFS</strong> <strong>수급</strong> 여력 변화 주기적 모니터링 필요</span>
                 </div>
-                <div class="extra-sources"><span class="extra-sources-label">관련 기사 (5건)</span><div class="extra-sources-links"><a href="https://www.newsis.com/view/NISX20260712_0003705835" target="_blank" rel="noopener" class="extra-source-link">📎 뉴시스 — 삼성전자·SK하이닉스 &quot;공급이 못 따라간다&quot;…반도체 영…</a><a href="https://www.theonetv.kr/news/articleView.html?idxno=248970" target="_blank" rel="noopener" class="extra-source-link">📎 OBC 뉴스 — SK·마이크론, 메모리 공장 ‘속도전’…먼저 짓는 기업…</a><a href="https://v.daum.net/v/twublaLxTh" target="_blank" rel="noopener" class="extra-source-link">📎 Daum — 삼성·SK·마이크론 ‘메모리 3사’, 캐파 전쟁 불붙었…</a><a href="http://www.smaeil.com/news/articleViewAmp.html?idxno=600845" target="_blank" rel="noopener" class="extra-source-link">📎 서울매일 — HBM은 멀지만 범용 D램은 다르다…창신메모리, 6조원…</a><a href="https://www.ebn.co.kr/news/articleView.html?idxno=1716030" target="_blank" rel="noopener" class="extra-source-link">📎 www.ebn.co.kr — [EBN 오늘(12일) 이슈 종합] 메모리 슈퍼사이클에…</a></div></div>
-                <a href="https://www.hani.co.kr/arti/economy/marketing/1267873.html" target="_blank" rel="noopener" class="news-link-btn">원문 보기 →</a>
+                
+                <a href="https://www.businesskorea.co.kr/news/articleView.html?idxno=272963" target="_blank" rel="noopener" class="news-link-btn">원문 보기 →</a>
             </div>
             <div class="news-item">
                 <div class="news-item-header">
                     <span class="news-rank top">#2</span>
-                    <a href="https://www.joongang.co.kr/article/25444405" target="_blank" rel="noopener" class="news-title">삼성전자 용인 반도체 공장 1~2년 앞당긴다…“2029년 가동”</a>
+                    <a href="https://kr.benzinga.com/news/usa/stocks/sk%ED%95%98%EC%9D%B4%EB%8B%89%EC%8A%A4-vs-%EB%A7%88%EC%9D%B4%ED%81%AC%EB%A1%A0-%EC%9B%94%EA%B0%80%EA%B0%80-%EC%A3%BC%EB%AA%A9%ED%95%98%EB%8A%94-ai-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EC%A0%84%EC%9F%81/" target="_blank" rel="noopener" class="news-title">SK하이닉스 vs 마이크론: 월가가 주목하는 AI 메모리 전쟁, 이제 ‘진검승부’ 시작</a>
                 </div>
                 <div class="news-meta">
-                    <span class="badge badge-pending">중앙일보</span>
-                    <span class="news-date">16시간 전</span>
-                    
+                    <span class="badge badge-pending">Benzinga</span>
+                    <span class="news-date">1분 전</span>
+                    <span class="badge badge-success">마이크론</span><span class="badge badge-success">SK하이닉스</span><span class="badge badge-success">메모리</span>
                 </div>
-                <p class="news-snippet">삼성전자가 경기 용인의 반도체 클러스터 첫 생산공장(팹) 가동 목표를 2029년으로 앞당긴다. 인공지능(AI) 메모리 수퍼사이클(초호황기) 장기화에 대비해 생산능력...</p>
+                <p class="news-snippet">수년 동안 마이크론 테크놀로지(NASDAQ:MU)는 AI 메모리 붐에 편승하고자 하는 미국 투자자들에게 가장 인기 있는 종목이었다. 그리고 이제 마이크론에 경쟁자가...</p>
                 <div class="insight-bar">
                     <span class="insight-label">당사 인사이트</span>
-                    <span class="insight-text">메모리 업황 참고 → 주간 시황 보고 및 분기 구매 계획 수립 시 배경 자료로 활용</span>
+                    <span class="insight-text">경쟁 <strong>공급</strong>사(Micron·Kioxia·SanDisk) 동향 → 삼성·SK <strong>협상</strong> 시 <strong>가격</strong> 벤치마크로 적극 활용</span>
                 </div>
-                
-                <a href="https://www.joongang.co.kr/article/25444405" target="_blank" rel="noopener" class="news-link-btn">원문 보기 →</a>
+                <div class="extra-sources"><span class="extra-sources-label">같은 사건 · 5개 추가 보도</span><div class="extra-sources-links"><a href="https://www.m-i.kr/news/articleView.html?idxno=1390871" target="_blank" rel="noopener" class="extra-source-row"><span class="extra-src-badge">매일일보</span><span class="extra-src-title">&quot;하루라도 빨리&quot; 삼성·SK·마이크론, 메모리 특수에 새공장 구축 총력전</span></a><a href="https://kr.investing.com/news/stock-market-news/article-93CH-2013755" target="_blank" rel="noopener" class="extra-source-row"><span class="extra-src-badge">Investing.com 한국어</span><span class="extra-src-title">뱅크오브아메리카, AI 메모리 수요 증가에 마이크론 최선호주 선정</span></a><a href="https://v.daum.net/v/20260713162007379" target="_blank" rel="noopener" class="extra-source-row"><span class="extra-src-badge">Daum</span><span class="extra-src-title">삼성·SK·마이크론 증설 경쟁…공장이 AI 시대 승부처[기술, 다시 공장]</span></a><a href="https://nownews.seoul.co.kr/news/newsView.php?id=20260713601015" target="_blank" rel="noopener" class="extra-source-row"><span class="extra-src-badge">나우뉴스</span><span class="extra-src-title">공격적 투자 진행하는 마이크론…‘메모리 넘버 3’ 지킬 수 있을까? [고든 정의 …</span></a><a href="https://marketin.edaily.co.kr/News/ReadE?newsId=02246806645514520" target="_blank" rel="noopener" class="extra-source-row"><span class="extra-src-badge">마켓인</span><span class="extra-src-title">마이크론, 마벨, 웨스턴디지털, 씨게이트, SK하이닉스, 오라클</span></a></div></div>
+                <a href="https://kr.benzinga.com/news/usa/stocks/sk%ED%95%98%EC%9D%B4%EB%8B%89%EC%8A%A4-vs-%EB%A7%88%EC%9D%B4%ED%81%AC%EB%A1%A0-%EC%9B%94%EA%B0%80%EA%B0%80-%EC%A3%BC%EB%AA%A9%ED%95%98%EB%8A%94-ai-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EC%A0%84%EC%9F%81/" target="_blank" rel="noopener" class="news-link-btn">원문 보기 →</a>
             </div>
             <div class="news-item">
                 <div class="news-item-header">
                     <span class="news-rank top">#3</span>
-                    <a href="https://www.asiatoday.co.kr/kn/view.php?key=20260712010004257" target="_blank" rel="noopener" class="news-title">메모리 값 상승에 애플 이어 구글도 가격↑…갤럭시 폴드8도 인상 불가피</a>
+                    <a href="https://news.jtbc.co.kr/article/NB12307987" target="_blank" rel="noopener" class="news-title">삼성전자 ‘낸드 인력’ SK하이닉스 이직에…법원 &quot;1년 6개월 전직 금지&quot;</a>
                 </div>
                 <div class="news-meta">
-                    <span class="badge badge-pending">아시아투데이</span>
-                    <span class="news-date">2시간 전</span>
-                    <span class="badge badge-success">메모리</span><span class="badge badge-success">가격</span><span class="badge badge-success">공급</span>
+                    <span class="badge badge-pending">JTBC</span>
+                    <span class="news-date">16시간 전</span>
+                    <span class="badge badge-success">낸드</span><span class="badge badge-success">SK하이닉스</span><span class="badge badge-success">삼성전자</span>
                 </div>
-                <p class="news-snippet">AI(인공지능) 데이터센터 투자 확대로 촉발된 메모리 공급 부족이 스마트폰 시장까지 흔들고 있다. 애플에 이어 구글까지 차기 스마트폰 가격 인상을 예고하면서 업계...</p>
+                <p class="news-snippet">법원이 삼성전자에서 SK하이닉스로 이직한 낸드플래시 설계 핵심 인력 2명을 상대로 삼성전자가 낸 전직금지 가처분 신청을 일부 받아들였습니다. ...</p>
                 <div class="insight-bar">
                     <span class="insight-label">당사 인사이트</span>
-                    <span class="insight-text"><strong>공급</strong>망 리스크 포착 → 안전 <strong>재고</strong> 수준 긴급 점검 및 대체 소싱·<strong>재고</strong> 확충 여부 즉시 검토</span>
+                    <span class="insight-text"><strong>NAND</strong> 업황 변화 → 스마트폰 <strong>UFS</strong> 조달 전략 수립 시 <strong>TrendForce</strong> 데이터와 병행 참고</span>
                 </div>
-                <div class="extra-sources"><span class="extra-sources-label">관련 기사 (5건)</span><div class="extra-sources-links"><a href="http://www.inews24.com/view/1984548" target="_blank" rel="noopener" class="extra-source-link">📎 아이뉴스24 — 애플도 삼성도 가격 고심…메모리값이 바꾼 스마트폰 시장…</a><a href="https://www.ebn.co.kr/news/articleView.html?idxno=1716033" target="_blank" rel="noopener" class="extra-source-link">📎 www.ebn.co.kr — 완제품 이어 수리비도 압박…삼성전자 서비스 자재비 인상…</a><a href="https://www.getnews.co.kr/news/articleViewAmp.html?idxno=874819" target="_blank" rel="noopener" class="extra-source-link">📎 글로벌경제신문 — &#x27;추론 AI&#x27; 시대에 뜨는 낸드플래시…가격 18개월 연…</a><a href="https://www.steeldaily.co.kr/news/articleViewAmp.html?idxno=201336" target="_blank" rel="noopener" class="extra-source-link">📎 스틸데일리 — 동국제강, 일반형강 가격 인상...찬넬 엑스트라도…</a><a href="https://www.donga.com/news/Economy/article/all/20260712/134283214/2" target="_blank" rel="noopener" class="extra-source-link">📎 동아일보 — 서울 집값 상승에… ‘대체재’ 빌라 매매-전월세 가격 …</a></div></div>
-                <a href="https://www.asiatoday.co.kr/kn/view.php?key=20260712010004257" target="_blank" rel="noopener" class="news-link-btn">원문 보기 →</a>
+                <div class="extra-sources"><span class="extra-sources-label">같은 사건 · 5개 추가 보도</span><div class="extra-sources-links"><a href="https://www.ikbc.co.kr/article/view/kbc202607130033" target="_blank" rel="noopener" class="extra-source-row"><span class="extra-src-badge">KBC광주방송</span><span class="extra-src-title">법원 &quot;삼성전자 낸드 인력 SK하이닉스 전직 1년 반 금지&quot; 결정</span></a><a href="https://www.newdaily.co.kr/site/data/html/2026/07/13/2026071300317.amp.html" target="_blank" rel="noopener" class="extra-source-row"><span class="extra-src-badge">뉴데일리</span><span class="extra-src-title">법원, 삼성전자→SK하이닉스 낸드 인력 이직 제동 … &quot;위반 시 하루 500만 원…</span></a><a href="https://www.businesspost.co.kr/BP?command=article_view&amp;num=442199" target="_blank" rel="noopener" class="extra-source-row"><span class="extra-src-badge">비즈니스포스트</span><span class="extra-src-title">중국 화웨이도 메모리반도체 &#x27;자급체제&#x27; 구축 힘 싣나, 삼성전자 SK하이닉스와 경…</span></a><a href="https://www.joongang.co.kr/article/25444588" target="_blank" rel="noopener" class="extra-source-row"><span class="extra-src-badge">중앙일보</span><span class="extra-src-title">삼성 낸드 핵심 인력, SK하이닉스 이직 제동…법원 “1년 6개월 전직 금지”</span></a><a href="https://www.newspim.com/news/view/20260713000816" target="_blank" rel="noopener" class="extra-source-row"><span class="extra-src-badge">뉴스핌</span><span class="extra-src-title">SK하이닉스, 美 사업 재편 완료...솔리다임 낸드 판매·R&amp;D·인력 이전</span></a></div></div>
+                <a href="https://news.jtbc.co.kr/article/NB12307987" target="_blank" rel="noopener" class="news-link-btn">원문 보기 →</a>
             </div>
             <div class="news-item">
                 <div class="news-item-header">
                     <span class="news-rank">#4</span>
-                    <a href="https://biz.chosun.com/it-science/ict/2026/07/13/YSQ6KUQHBFEXLFVFBIR4PMFSAM/" target="_blank" rel="noopener" class="news-title">“발주 늘었지만 마진은 그대로”… 삼성전자·SK하이닉스 초호황에도 씁쓸한 소부장 협력사들 - 조선비즈</a>
+                    <a href="https://www.etoday.co.kr/news/view/2602992" target="_blank" rel="noopener" class="news-title">씨피시스템, 中 최대 D램 기업 CXMT향 반도체 세정 장비에 ‘G-클린체인’ 솔루션 공급…메모리ㆍ파운드리 공급망 확대 추진</a>
                 </div>
                 <div class="news-meta">
-                    <span class="badge badge-pending">Chosunbiz</span>
-                    <span class="news-date">2시간 전</span>
-                    <span class="badge badge-success">SK하이닉스</span><span class="badge badge-success">메모리</span><span class="badge badge-success">삼성전자</span>
+                    <span class="badge badge-pending">이투데이</span>
+                    <span class="news-date">22시간 전</span>
+                    <span class="badge badge-success">메모리</span><span class="badge badge-success">CXMT</span><span class="badge badge-success">공급</span>
                 </div>
-                <p class="news-snippet">발주 늘었지만 마진은 그대로 삼성전자·SK하이닉스 초호황에도 씁쓸한 소부장 협력사들 메모리 반도체 3사 영업이익률 75~80% 추정 韓 소부장 기업들은 10~20%대 그쳐...</p>
-                <div class="insight-bar">
-                    <span class="insight-label">당사 인사이트</span>
-                    <span class="insight-text"><strong>SK하이닉스</strong> 전략 변화 → <strong>LP<strong>DDR</strong></strong>·<strong>HBM</strong> <strong>공급</strong> 조건 및 중장기 파트너십 영향 모니터링</span>
-                </div>
-                <div class="extra-sources"><span class="extra-sources-label">관련 기사 (1건)</span><div class="extra-sources-links"><a href="https://www.etoday.co.kr/news/view/2602585" target="_blank" rel="noopener" class="extra-source-link">📎 이투데이 — [주간수급리포트] 외국인, 삼성전자·SK하이닉스 6.1…</a></div></div>
-                <a href="https://biz.chosun.com/it-science/ict/2026/07/13/YSQ6KUQHBFEXLFVFBIR4PMFSAM/" target="_blank" rel="noopener" class="news-link-btn">원문 보기 →</a>
-            </div>
-            <div class="news-item">
-                <div class="news-item-header">
-                    <span class="news-rank">#5</span>
-                    <a href="https://www.inews24.com/view/1984723" target="_blank" rel="noopener" class="news-title">곽노정 &quot;2027년 메모리 공급난 역대 최악&quot;…美·日·동남아 팹 검토</a>
-                </div>
-                <div class="news-meta">
-                    <span class="badge badge-pending">아이뉴스24</span>
-                    <span class="news-date">3시간 전</span>
-                    
-                </div>
-                <p class="news-snippet">&quot;2030년 이후에도 고객 수요가 공급능력 웃돌 것&quot; 부지·전력·용수·숙련인력·제조원가 종합 평가 곽노정 SK하이닉스 최고경영자(CEO)가 내년 메모리 공급난이 업계 역사상 가장 심각할 것으로 전망하고, 미국·일본·동남아시아를 차기 웨이퍼(반도체 원판) 팹(생산공장) 투자 후보지로 검토하고 있다고 밝혔다. 12일 로이터에 따르면 곽 CEO는 지난 10일(현지시간) 인터뷰에서 &quot;고객 수요는 계속 늘고 있지만 메모리 생산능력에는 한계가 있다&quot;며 &quot;2030년 이후에도 고객 수요가 공급능력을 웃돌 것으로 예상한다&quot;고 말했다.</p>
-                <div class="insight-bar">
-                    <span class="insight-label">당사 인사이트</span>
-                    <span class="insight-text"><strong>공급</strong>망 리스크 포착 → 안전 <strong>재고</strong> 수준 긴급 점검 및 대체 소싱·<strong>재고</strong> 확충 여부 즉시 검토</span>
-                </div>
-                
-                <a href="https://www.inews24.com/view/1984723" target="_blank" rel="noopener" class="news-link-btn">원문 보기 →</a>
-            </div>
-            <div class="news-item">
-                <div class="news-item-header">
-                    <span class="news-rank">#6</span>
-                    <a href="https://v.daum.net/v/20260712091107534" target="_blank" rel="noopener" class="news-title">낸드, HBM 이후 AI칩 새 주인공 부상</a>
-                </div>
-                <div class="news-meta">
-                    <span class="badge badge-pending">Daum</span>
-                    <span class="news-date">23시간 전</span>
-                    <span class="badge badge-success">낸드</span><span class="badge badge-success">YMTC</span><span class="badge badge-success">HBM</span>
-                </div>
-                <p class="news-snippet">가격 18개월 연속 상승… 빅테크 eSSD 수요에 투자 경쟁 본격화 삼성·SK 증설 속 중국 YMTC도 추격… 낸드 주도권 경쟁 가속. 삼성전자 기업용 SSD PM1763.</p>
-                <div class="insight-bar">
-                    <span class="insight-label">당사 인사이트</span>
-                    <span class="insight-text"><strong>HBM</strong> <strong>Capa</strong> 집중으로 <strong>LP<strong>DDR</strong></strong>·<strong>UFS</strong> <strong>공급</strong> 여력 축소 가능성 → <strong>재고</strong> 수준 점검 및 선제 물량 확보 검토</span>
-                </div>
-                
-                <a href="https://v.daum.net/v/20260712091107534" target="_blank" rel="noopener" class="news-link-btn">원문 보기 →</a>
-            </div>
-            <div class="news-item">
-                <div class="news-item-header">
-                    <span class="news-rank">#7</span>
-                    <a href="https://www.dnews.co.kr/uhtml/view.jsp?idxno=202607101819067670755" target="_blank" rel="noopener" class="news-title">삼성전자, ‘비메모리 살리기’ 시동… 파운드리·시스템LSI 동시 지원</a>
-                </div>
-                <div class="news-meta">
-                    <span class="badge badge-pending">대한경제</span>
-                    <span class="news-date">2시간 전</span>
-                    <span class="badge badge-success">메모리</span><span class="badge badge-success">가격</span><span class="badge badge-success">공급</span>
-                </div>
-                <p class="news-snippet">이재용 회장, 美 선밸리행… 업계 “빅테크 파운드리 수주 확대 행보” TSMC 이어 삼성도 첨단 공정 가격 인상… 공급자 시장 재편 시스템LSI, AI PC 칩 '가이아' 개발...</p>
-                <div class="insight-bar">
-                    <span class="insight-label">당사 인사이트</span>
-                    <span class="insight-text"><strong>삼성전자</strong> 실적·전망 개선 → <strong>공급</strong>사 <strong>협상</strong>력 강화 가능성, <strong>LP<strong>DDR</strong></strong>·<strong>UFS</strong> 계약 조건 선제 점검</span>
-                </div>
-                
-                <a href="https://www.dnews.co.kr/uhtml/view.jsp?idxno=202607101819067670755" target="_blank" rel="noopener" class="news-link-btn">원문 보기 →</a>
-            </div>
-            <div class="news-item">
-                <div class="news-item-header">
-                    <span class="news-rank">#8</span>
-                    <a href="https://www.thelec.net/news/articleView.html?idxno=12188" target="_blank" rel="noopener" class="news-title">SK hynix Debuts on Nasdaq, Says 'Wherever AI Is, SK hynix Will Be There'</a>
-                </div>
-                <div class="news-meta">
-                    <span class="badge badge-pending">THE ELEC, Korea Electronics Industry Media</span>
-                    <span class="news-date">12분 전</span>
-                    <span class="badge badge-success">hynix</span>
-                </div>
-                <p class="news-snippet">SK hynix officially debuted on the Nasdaq on July (local time), raising approximately trillion won through its American Depositary Receipt (ADR)...</p>
-                <div class="insight-bar">
-                    <span class="insight-label">당사 인사이트</span>
-                    <span class="insight-text"><strong>SK하이닉스</strong> 전략 변화 → <strong>LP<strong>DDR</strong></strong>·<strong>HBM</strong> <strong>공급</strong> 조건 및 중장기 파트너십 영향 모니터링</span>
-                </div>
-                <div class="extra-sources"><span class="extra-sources-label">관련 기사 (5건)</span><div class="extra-sources-links"><a href="https://en.sedaily.com/finance/2026/07/12/hbm4-prices-to-double-next-year-as-samsung-sk-hynix-keep" target="_blank" rel="noopener" class="extra-source-link">📎 Seoul Economic Daily — HBM4 Prices to Double Next Yea…</a><a href="https://www.theinvestor.co.kr/article/10806083" target="_blank" rel="noopener" class="extra-source-link">📎 The Investor — What SK hynix’s record Nasdaq …</a><a href="https://www.chosun.com/english/industry-en/2026/07/13/6MSNQHGEFVALTHTQCXAYDCQMDM/" target="_blank" rel="noopener" class="extra-source-link">📎 조선일보 — SK Hynix ADR Surge Fuels AI Ch…</a><a href="https://simplywall.st/ko/stocks/kr/semiconductors/kose-a000660/sk-hynix-shares/news/6c7f5c990111a827" target="_blank" rel="noopener" class="extra-source-link">📎 Simply Wall Street — 30% 저평가 가능성 있는 SK hynix(KOSE:A…</a><a href="https://en.yna.co.kr/view/AEN20260712001400320" target="_blank" rel="noopener" class="extra-source-link">📎 Yonhap News Agency — SK hynix dollar inflow expecte…</a></div></div>
-                <a href="https://www.thelec.net/news/articleView.html?idxno=12188" target="_blank" rel="noopener" class="news-link-btn">원문 보기 →</a>
-            </div>
-            <div class="news-item">
-                <div class="news-item-header">
-                    <span class="news-rank">#9</span>
-                    <a href="https://www.ytn.co.kr/_cs/_ln_0102_202607122335485888_005.html" target="_blank" rel="noopener" class="news-title">[경제]삼성전자 &quot;용인 팹 조기 가동&quot;...메모리 투자 경쟁 '격화'</a>
-                </div>
-                <div class="news-meta">
-                    <span class="badge badge-pending">YTN</span>
-                    <span class="news-date">8시간 전</span>
-                    <span class="badge badge-success">메모리</span><span class="badge badge-success">삼성전자</span>
-                </div>
-                <p class="news-snippet">삼성전자가 용인 국가산단에 짓는 반도체 팹 1호 공장의 가동 시점을 2029년 하반기로 최대 2년 앞당긴 것으로 파악됐습니다.최근 일각에서 제기되는.</p>
-                <div class="insight-bar">
-                    <span class="insight-label">당사 인사이트</span>
-                    <span class="insight-text"><strong>삼성전자</strong> 전략 변화 → <strong>LP<strong>DDR</strong></strong>·<strong>UFS</strong> <strong>공급</strong> 조건 및 중장기 파트너십 영향 모니터링</span>
-                </div>
-                <div class="extra-sources"><span class="extra-sources-label">관련 기사 (4건)</span><div class="extra-sources-links"><a href="https://www.segye.com/newsView/20260712512432" target="_blank" rel="noopener" class="extra-source-link">📎 세계일보 — “美에 메모리 공장 지어라” 압박에… 반도체 투자 딜레…</a><a href="https://www.donga.com/news/Economy/article/all/20260713/134284398/2" target="_blank" rel="noopener" class="extra-source-link">📎 동아일보 — 본격 속도내는 용인 팹… 韓-美-中, 메모리 설비 확충…</a><a href="https://www.donga.com/news/Economy/article/all/20260713/134284469/2" target="_blank" rel="noopener" class="extra-source-link">📎 동아일보 — 삼성전자 용인 팹 건설… 1기 완공 2년 앞당긴다…</a><a href="https://www.yonhapnewstv.co.kr/news/MYH20260713051201fzB" target="_blank" rel="noopener" class="extra-source-link">📎 연합뉴스TV — 삼성 용인 반도체 팹 2029년 첫 가동…1~2년 계획…</a></div></div>
-                <a href="https://www.ytn.co.kr/_cs/_ln_0102_202607122335485888_005.html" target="_blank" rel="noopener" class="news-link-btn">원문 보기 →</a>
-            </div>
-            <div class="news-item">
-                <div class="news-item-header">
-                    <span class="news-rank">#10</span>
-                    <a href="https://biz.newdaily.co.kr/site/data/html/2026/07/12/2026071200043.html" target="_blank" rel="noopener" class="news-title">SK하이닉스 화려한 데뷔에 나스닥 사장도 &quot;대박&quot; … 최태원 &quot;美 추가 투자 가능&quot;</a>
-                </div>
-                <div class="news-meta">
-                    <span class="badge badge-pending">뉴데일리</span>
-                    <span class="news-date">2026-07-12</span>
-                    <span class="badge badge-success">SK하이닉스</span><span class="badge badge-success">ADR</span><span class="badge badge-success">나스닥</span>
-                </div>
-                <p class="news-snippet">SK하이닉스가 미국 나스닥 시장에 성공적으로 데뷔하며 글로벌 인공지능(AI) 메모리 시장의 경쟁력을 다시 한번 입증했다. 미국 투자자들이 SK하이닉스의 기업가치를 국내보다 높게 평가한 데 이어, 나스닥은 이번 상장이 다른 글로벌 기업들의 미국 증시 진출을 촉진하는 계기가 될 것으로 전망했다. 최태원 SK그룹 회장은 미국 생산기지 구축 가능성도 열어두며 AI 시대 메모리 공급 확대에 적극 나서겠다는 뜻을 밝혔다.12일 업계에 따르면 SK하이닉스 ...</p>
-                <div class="insight-bar">
-                    <span class="insight-label">당사 인사이트</span>
-                    <span class="insight-text"><strong>SK하이닉스</strong> 실적·전망 개선 → <strong>공급</strong>사 <strong>협상</strong>력 강화 가능성, 계약 조건 선제 점검 필요</span>
-                </div>
-                <div class="extra-sources"><span class="extra-sources-label">관련 기사 (1건)</span><div class="extra-sources-links"><a href="http://weekly.chosun.com/news/articleView.html?idxno=53397" target="_blank" rel="noopener" class="extra-source-link">📎 주간조선 — 40조원 들고 온 SK하이닉스…&#x27;통화스와프급&#x27; 달러 공…</a></div></div>
-                <a href="https://biz.newdaily.co.kr/site/data/html/2026/07/12/2026071200043.html" target="_blank" rel="noopener" class="news-link-btn">원문 보기 →</a>
-            </div>
-            <div class="news-item">
-                <div class="news-item-header">
-                    <span class="news-rank">#11</span>
-                    <a href="https://www.economytribune.co.kr/news/articleView.html?idxno=3903318" target="_blank" rel="noopener" class="news-title">아이폰18 프로는 ‘삼전닉스’ D램 전망…CXMT는 일반형 진입할 수도</a>
-                </div>
-                <div class="news-meta">
-                    <span class="badge badge-pending">이코노미트리뷴</span>
-                    <span class="news-date">18시간 전</span>
-                    <span class="badge badge-success">메모리</span><span class="badge badge-success">CXMT</span><span class="badge badge-success">애플</span>
-                </div>
-                <p class="news-snippet">[이코노미트리뷴 = 예현우 기자] 애플이 중국 창신메모리테크놀로지(CXMT)의 D램을 시험하고 있는 가운데, 차기 플래그십 모델인 아이폰18 프로에는 삼성전자와.</p>
-                <div class="insight-bar">
-                    <span class="insight-label">당사 인사이트</span>
-                    <span class="insight-text"><strong>삼성전자</strong> 전략 변화 → <strong>LP<strong>DDR</strong></strong>·<strong>UFS</strong> <strong>공급</strong> 조건 및 중장기 파트너십 영향 모니터링</span>
-                </div>
-                <div class="extra-sources"><span class="extra-sources-label">관련 기사 (3건)</span><div class="extra-sources-links"><a href="https://www.alphabiz.co.kr/news/articleView.html?idxno=163588" target="_blank" rel="noopener" class="extra-source-link">📎 알파경제 — [현장]&quot;빈집 털린 범용 D램&quot;…中 CXMT 6.5조 …</a><a href="http://www.tfmedia.co.kr/news/article.html?no=205714" target="_blank" rel="noopener" class="extra-source-link">📎 조세금융신문 — &#x27;세계 D램 4위&#x27; 중국 CXMT…6.5조 실탄으로 삼…</a><a href="https://www.seoul.co.kr/news/economy/2026/07/12/20260712500029" target="_blank" rel="noopener" class="extra-source-link">📎 서울신문 — 세계 4위 ‘中 CXMT’ 삼전닉스 추격 본격화…6.5…</a></div></div>
-                <a href="https://www.economytribune.co.kr/news/articleView.html?idxno=3903318" target="_blank" rel="noopener" class="news-link-btn">원문 보기 →</a>
-            </div>
-            <div class="news-item">
-                <div class="news-item-header">
-                    <span class="news-rank">#12</span>
-                    <a href="https://www.hankyung.com/article/2026071189041" target="_blank" rel="noopener" class="news-title">최태원 &quot;AI칩 늘 부족…고객들 공급 5~6배 늘리길 원해&quot;</a>
-                </div>
-                <div class="news-meta">
-                    <span class="badge badge-pending">한국경제</span>
-                    <span class="news-date">2026-07-11</span>
-                    <span class="badge badge-success">HBM</span><span class="badge badge-success">메모리</span>
-                </div>
-                <p class="news-snippet">최태원 &quot;AI칩 늘 부족…고객들 공급 5~6배 늘리길 원해&quot;, 美 CNBC 인터뷰 &quot;나스닥 상장은 역사적인 순간&quot; 피지컬AI 시대, 수요 폭발적 증가 상장으로 인재 영입 훨씬 쉬워져 조건 된다면 美 추가 증설 가능성 전 세계 여러지역 놓고 입지 검토</p>
-                <div class="insight-bar">
-                    <span class="insight-label">당사 인사이트</span>
-                    <span class="insight-text"><strong>HBM</strong> <strong>Capa</strong> 집중으로 <strong>LP<strong>DDR</strong></strong>·<strong>UFS</strong> <strong>공급</strong> 여력 축소 가능성 → <strong>재고</strong> 수준 점검 및 선제 물량 확보 검토</span>
-                </div>
-                
-                <a href="https://www.hankyung.com/article/2026071189041" target="_blank" rel="noopener" class="news-link-btn">원문 보기 →</a>
-            </div>
-            <div class="news-item">
-                <div class="news-item-header">
-                    <span class="news-rank">#13</span>
-                    <a href="https://it.chosun.com/news/articleViewAmp.html?idxno=2023092165599" target="_blank" rel="noopener" class="news-title">엔비디아·AMD·인텔·퀄컴의 서로 다른 승부수 [메모리發 AI PC 시장 재편]</a>
-                </div>
-                <div class="news-meta">
-                    <span class="badge badge-pending">IT조선</span>
-                    <span class="news-date">1시간 전</span>
-                    <span class="badge badge-success">메모리</span><span class="badge badge-success">가격</span><span class="badge badge-success">공급</span>
-                </div>
-                <p class="news-snippet">최근 인공지능(AI)발 메모리 가격 폭등과 수급난이 PC시장의 제품 전략과 공급망 구조를 바꾸고 있다. 메모리 가격 상승이 제품 가격에 반영되면서 PC 시장의 수요가...</p>
+                <p class="news-snippet">CXMT 메모리 반도체 생산능력 확충 흐름 속 중국 반도체 매출 기반 확대 추진케이블체인 전문기업 씨피시스템이 중국 최대 D램 제조사인 창신메모...</p>
                 <div class="insight-bar">
                     <span class="insight-label">당사 인사이트</span>
                     <span class="insight-text">메모리 업황 참고 → 주간 시황 보고 및 분기 구매 계획 수립 시 배경 자료로 활용</span>
                 </div>
-                <div class="extra-sources"><span class="extra-sources-label">관련 기사 (5건)</span><div class="extra-sources-links"><a href="https://www.etoday.co.kr/news/view/2602775" target="_blank" rel="noopener" class="extra-source-link">📎 이투데이 — AI 메모리 ‘슈퍼사이클’…삼성·SK·마이크론 투자 전…</a><a href="https://www.economytribune.co.kr/news/articleView.html?idxno=3903317" target="_blank" rel="noopener" class="extra-source-link">📎 이코노미트리뷴 — SK하이닉스, ‘메모리 안에서 AI 연산’…엣지용 실험…</a><a href="https://www.coinreaders.com/247273" target="_blank" rel="noopener" class="extra-source-link">📎 코인리더스 — 월가 또 외쳤다…마이크론 목표가 1,600달러 유지, …</a><a href="https://www.etoday.co.kr/news/view/2602792" target="_blank" rel="noopener" class="extra-source-link">📎 이투데이 — AI 다음은 핵융합…차세대 엔비디아 후보는 [핵융합의 …</a><a href="https://www.koreaherald.com/article/10805993" target="_blank" rel="noopener" class="extra-source-link">📎 The Korea Herald — Memory giants race to expand A…</a></div></div>
-                <a href="https://it.chosun.com/news/articleViewAmp.html?idxno=2023092165599" target="_blank" rel="noopener" class="news-link-btn">원문 보기 →</a>
+                <div class="extra-sources"><span class="extra-sources-label">같은 사건 · 3개 추가 보도</span><div class="extra-sources-links"><a href="https://www.newstown.co.kr/news/articleView.html?idxno=708941" target="_blank" rel="noopener" class="extra-source-row"><span class="extra-src-badge">뉴스타운</span><span class="extra-src-title">씨피시스템, 중국 CXMT에 G-클린체인 공급 확대</span></a><a href="https://www.newsis.com/view/NISX20260713_0003706482" target="_blank" rel="noopener" class="extra-source-row"><span class="extra-src-badge">뉴시스</span><span class="extra-src-title">씨피시스템, 中 CXMT향 &#x27;G-클린체인&#x27; 공급 확대 추진</span></a><a href="https://www.finance-scope.com/article/view/scp202607130009" target="_blank" rel="noopener" class="extra-source-row"><span class="extra-src-badge">파이낸스스코프</span><span class="extra-src-title">씨피시스템, 中 최대 D램 기업 CXMT에 &#x27;G-클린체인&#x27; 공급 확대 추진</span></a></div></div>
+                <a href="https://www.etoday.co.kr/news/view/2602992" target="_blank" rel="noopener" class="news-link-btn">원문 보기 →</a>
             </div>
             <div class="news-item">
                 <div class="news-item-header">
-                    <span class="news-rank">#14</span>
-                    <a href="https://www.digitaltoday.co.kr/en/view/80602/samsung-electronics-sk-hynix-dram-operating-margin-near-80-percent-memory-boom-holds-firm" target="_blank" rel="noopener" class="news-title">Samsung Electronics, SK Hynix DRAM operating margin nears 80 percent as memory boom holds firm</a>
+                    <span class="news-rank">#5</span>
+                    <a href="http://www.theonetv.kr/news/articleView.html?idxno=249018" target="_blank" rel="noopener" class="news-title">CXMT 주이밍, 삼성·SK하이닉스에 도전장…4조원대 IPO로 D램 증설</a>
                 </div>
                 <div class="news-meta">
-                    <span class="badge badge-pending">디지털투데이</span>
-                    <span class="news-date">23시간 전</span>
-                    <span class="badge badge-success">DRAM</span><span class="badge badge-success">hynix</span><span class="badge badge-success">Memory</span>
+                    <span class="badge badge-pending">OBC 뉴스</span>
+                    <span class="news-date">19시간 전</span>
+                    <span class="badge badge-success">마이크론</span><span class="badge badge-success">SK하이닉스</span><span class="badge badge-success">메모리</span>
                 </div>
-                <p class="news-snippet">Samsung Electronics and SK Hynix are expected to post record quarterly results as their combined second-quarter operating profit nears trillion won.</p>
+                <p class="news-snippet">[OBC뉴스=베이징] 삼성전자·SK하이닉스·마이크론이 장악해 온 세계 D램 시장에 중국의 네 번째 사업자가 본격적으로 자본을 투입합니다. 창신메모리테크놀로지(CXMT)는...</p>
+                <div class="insight-bar">
+                    <span class="insight-label">당사 인사이트</span>
+                    <span class="insight-text">경쟁 <strong>공급</strong>사(Micron·Kioxia·SanDisk) 동향 → 삼성·SK <strong>협상</strong> 시 <strong>가격</strong> 벤치마크로 적극 활용</span>
+                </div>
+                <div class="extra-sources"><span class="extra-sources-label">같은 사건 · 5개 추가 보도</span><div class="extra-sources-links"><a href="https://www.joongang.co.kr/article/25444588" target="_blank" rel="noopener" class="extra-source-row"><span class="extra-src-badge">중앙일보</span><span class="extra-src-title">삼성 낸드 핵심 인력, SK하이닉스 이직 제동…법원 “1년 6개월 전직 금지”</span></a><a href="https://v.daum.net/v/20260713162007379" target="_blank" rel="noopener" class="extra-source-row"><span class="extra-src-badge">Daum</span><span class="extra-src-title">삼성·SK·마이크론 증설 경쟁…공장이 AI 시대 승부처[기술, 다시 공장]</span></a><a href="https://www.alphabiz.co.kr/news/articleView.html?idxno=163763" target="_blank" rel="noopener" class="extra-source-row"><span class="extra-src-badge">알파경제</span><span class="extra-src-title">&quot;빈집 털린 범용 D램&quot;…中 CXMT 6.5조 IPO·애플 진입에 삼성·SK &#x27;긴…</span></a><a href="https://www.finance-scope.com/article/view/scp202607130009" target="_blank" rel="noopener" class="extra-source-row"><span class="extra-src-badge">파이낸스스코프</span><span class="extra-src-title">씨피시스템, 中 최대 D램 기업 CXMT에 &#x27;G-클린체인&#x27; 공급 확대 추진</span></a><a href="https://www.kgnews.co.kr/news/article.html?no=903711" target="_blank" rel="noopener" class="extra-source-row"><span class="extra-src-badge">경기신문</span><span class="extra-src-title">법원, 삼성 낸드 핵심기술 보호 손들었다…SK하이닉스 이직 제한</span></a></div></div>
+                <a href="http://www.theonetv.kr/news/articleView.html?idxno=249018" target="_blank" rel="noopener" class="news-link-btn">원문 보기 →</a>
+            </div>
+            <div class="news-item">
+                <div class="news-item-header">
+                    <span class="news-rank">#6</span>
+                    <a href="https://themiilk.com/articles/acd6b20ed" target="_blank" rel="noopener" class="news-title">반도체 '피크아웃' 경고...SK하이닉스를 '메모리주'로 보면 늦는다</a>
+                </div>
+                <div class="news-meta">
+                    <span class="badge badge-pending">더밀크</span>
+                    <span class="news-date">9시간 전</span>
+                    <span class="badge badge-success">SK하이닉스</span><span class="badge badge-success">메모리</span><span class="badge badge-success">공급</span>
+                </div>
+                <p class="news-snippet">[밀키스레터] SK하이닉스는 이제 '반도체'회사가 아니다?! SK하이닉스, 메모리가 아닌 AI인프라로 데뷔하다 빅테크 자본지출 74% 급증…'공급과잉'?</p>
+                <div class="insight-bar">
+                    <span class="insight-label">당사 인사이트</span>
+                    <span class="insight-text"><strong>SK하이닉스</strong> 전략 변화 → <strong>LP<strong>DDR</strong></strong>·<strong>HBM</strong> <strong>공급</strong> 조건 및 중장기 파트너십 영향 모니터링</span>
+                </div>
+                <div class="extra-sources"><span class="extra-sources-label">같은 사건 · 1개 추가 보도</span><div class="extra-sources-links"><a href="https://v.daum.net/v/20260714071617999" target="_blank" rel="noopener" class="extra-source-row"><span class="extra-src-badge">Daum</span><span class="extra-src-title">[마켓 브리핑] 亞 SK하이닉스 필두 반도체 고전…뉴욕증시도 &#x27;출렁&#x27;</span></a></div></div>
+                <a href="https://themiilk.com/articles/acd6b20ed" target="_blank" rel="noopener" class="news-link-btn">원문 보기 →</a>
+            </div>
+            <div class="news-item">
+                <div class="news-item-header">
+                    <span class="news-rank">#7</span>
+                    <a href="https://www.tradingkey.com/kr/analysis/stocks/us-stocks/262026908-south-korea-decline-drags-down-us-stock-sk-hynix-sandisk-micron-tradingkey" target="_blank" rel="noopener" class="news-title">한국 증시 폭락이 미국 증시 하락 압박: 샌디스크 12% 급락, SK하이닉스 10% 이상 하락, 메모리 섹터 비이성적 매도세 발생</a>
+                </div>
+                <div class="news-meta">
+                    <span class="badge badge-pending">TradingKey</span>
+                    <span class="news-date">22시간 전</span>
+                    <span class="badge badge-success">SK하이닉스</span><span class="badge badge-success">메모리</span><span class="badge badge-success">샌디스크</span>
+                </div>
+                <p class="news-snippet">TradingKey - 미 동부 시간 7월 13일, 메모리 주식 섹터가 전반적인 하락세를 기록했다. 보도 시점 기준 샌디스크(SNDK)는 12.32%, SK하이닉스(SKHY)는 8.97%,...</p>
+                <div class="insight-bar">
+                    <span class="insight-label">당사 인사이트</span>
+                    <span class="insight-text"><strong>SK하이닉스</strong> 실적 압박 → <strong>가격</strong> 인하 <strong>협상</strong> 여력 확대, 차기 계약 재검토 기회</span>
+                </div>
+                <div class="extra-sources"><span class="extra-sources-label">같은 사건 · 4개 추가 보도</span><div class="extra-sources-links"><a href="https://www.econonews.co.kr/news/articleView.html?idxno=441145" target="_blank" rel="noopener" class="extra-source-row"><span class="extra-src-badge">이코노뉴스</span><span class="extra-src-title">뉴욕증시, 대이란 봉쇄·반도체주 부진에 하락⋯SK하이닉스 9%대, 샌디스크 13%…</span></a><a href="https://news.nate.com/view/20260714n03601" target="_blank" rel="noopener" class="extra-source-row"><span class="extra-src-badge">네이트</span><span class="extra-src-title">[미국 특징주] 샌디스크, 목표가 3100달러로 두 배 상향에도 주가 13% 급락</span></a><a href="https://www.news1.kr/world/international-economy/6226938" target="_blank" rel="noopener" class="extra-source-row"><span class="extra-src-badge">뉴스1</span><span class="extra-src-title">필라델피아 반도체 4.8% 급락…SK하닉 ADR 9%↓·샌디스크 12%↓</span></a><a href="https://www.chosun.com/economy/money/2026/07/13/U3MAVYQVGFEHHH72FX4PPAEIGU/" target="_blank" rel="noopener" class="extra-source-row"><span class="extra-src-badge">조선일보</span><span class="extra-src-title">하이닉스 美선 13% 프리미엄... 한국에서는 15% 폭락, 왜?</span></a></div></div>
+                <a href="https://www.tradingkey.com/kr/analysis/stocks/us-stocks/262026908-south-korea-decline-drags-down-us-stock-sk-hynix-sandisk-micron-tradingkey" target="_blank" rel="noopener" class="news-link-btn">원문 보기 →</a>
+            </div>
+            <div class="news-item">
+                <div class="news-item-header">
+                    <span class="news-rank">#8</span>
+                    <a href="https://www.econovill.com/news/articleView.html?idxno=745052" target="_blank" rel="noopener" class="news-title">낸드 슈퍼사이클의 그늘… SD카드·USB 값 뛰고 中 의존 커진다</a>
+                </div>
+                <div class="news-meta">
+                    <span class="badge badge-pending">ER 이코노믹리뷰</span>
+                    <span class="news-date">15시간 전</span>
+                    <span class="badge badge-success">낸드</span><span class="badge badge-success">SK하이닉스</span><span class="badge badge-success">메모리</span>
+                </div>
+                <p class="news-snippet">메모리 강세에 낸드플래시 가격까지 폭등하며 완제품 가격 안정에 비상이 걸렸다. 삼성전자와 SK하이닉스가 공들이는 기업용 낸드플래시(eSSD)·고부가 낸드가 아니라...</p>
+                <div class="insight-bar">
+                    <span class="insight-label">당사 인사이트</span>
+                    <span class="insight-text"><strong>NAND</strong> <strong>가격</strong> <strong>상승</strong>세 지속으로 <strong>UFS</strong> 원가 압박 확대 → 중장기 계약 비중 확대 및 <strong>재고</strong> 수준 점검</span>
+                </div>
+                
+                <a href="https://www.econovill.com/news/articleView.html?idxno=745052" target="_blank" rel="noopener" class="news-link-btn">원문 보기 →</a>
+            </div>
+            <div class="news-item">
+                <div class="news-item-header">
+                    <span class="news-rank">#9</span>
+                    <a href="https://www.asiatoday.co.kr/kn/view.php?key=20260713010004726" target="_blank" rel="noopener" class="news-title">HBM 호황의 역설…메모리값 뛰자 IT 소비 ‘찬바람’</a>
+                </div>
+                <div class="news-meta">
+                    <span class="badge badge-pending">아시아투데이</span>
+                    <span class="news-date">14시간 전</span>
+                    <span class="badge badge-success">메모리</span><span class="badge badge-success">HBM</span><span class="badge badge-success">가격</span>
+                </div>
+                <p class="news-snippet">AI 열풍으로 고대역폭메모리(HBM) 등 AI용 메모리 수요가 폭증하면서 반도체 업계는 호황을 맞았지만, 그 여파가 스마트폰과 PC 등 일반 IT기기 가격 상승으로 이어...</p>
+                <div class="insight-bar">
+                    <span class="insight-label">당사 인사이트</span>
+                    <span class="insight-text"><strong>HBM</strong> <strong>Capa</strong> 집중으로 <strong>LP<strong>DDR</strong></strong>·<strong>UFS</strong> <strong>공급</strong> 여력 축소 가능성 → <strong>재고</strong> 수준 점검 및 선제 물량 확보 검토</span>
+                </div>
+                
+                <a href="https://www.asiatoday.co.kr/kn/view.php?key=20260713010004726" target="_blank" rel="noopener" class="news-link-btn">원문 보기 →</a>
+            </div>
+            <div class="news-item">
+                <div class="news-item-header">
+                    <span class="news-rank">#10</span>
+                    <a href="https://news.nate.com/view/20260714n03865" target="_blank" rel="noopener" class="news-title">삼성, HBM 개발직 전방위 채용…HBM5 목표로 인력 확보 속도전</a>
+                </div>
+                <div class="news-meta">
+                    <span class="badge badge-pending">네이트</span>
+                    <span class="news-date">16분 전</span>
+                    <span class="badge badge-success">메모리</span><span class="badge badge-success">HBM</span><span class="badge badge-success">삼성전자</span>
+                </div>
+                <p class="news-snippet">한눈에 보는 오늘 : 경제 - 뉴스 : 서울 서초구 삼성전자 서초사옥의 모습. 뉴스1삼성전자가 고대역폭메모리(HBM) 설계부터 패키지·신뢰성 평가·고객 기술 지원까지 전...</p>
+                <div class="insight-bar">
+                    <span class="insight-label">당사 인사이트</span>
+                    <span class="insight-text"><strong>HBM</strong> 동향이 <strong>공급</strong>사 <strong>Capa</strong> 배분에 영향 → <strong>LP<strong>DDR</strong></strong>·<strong>UFS</strong> <strong>수급</strong> 여력 변화 주기적 모니터링 필요</span>
+                </div>
+                <div class="extra-sources"><span class="extra-sources-label">같은 사건 · 4개 추가 보도</span><div class="extra-sources-links"><a href="https://mobile.newsis.com/view_amp.html?ar_id=NISX20260713_0003707513" target="_blank" rel="noopener" class="extra-source-row"><span class="extra-src-badge">뉴시스</span><span class="extra-src-title">삼성전자 반도체 부문, 82개 직무 경력채용…&quot;HBM·첨단패키지 인재 확보&quot;</span></a><a href="https://www.ebn.co.kr/news/articleView.html?idxno=1716213" target="_blank" rel="noopener" class="extra-source-row"><span class="extra-src-badge">www.ebn.co.kr</span><span class="extra-src-title">삼성전자, 반도체 경력사원 채용...HBM·D램 등 82개 직군</span></a><a href="https://www.news1.kr/amp/industry/general-industry/6226666" target="_blank" rel="noopener" class="extra-source-row"><span class="extra-src-badge">뉴스1</span><span class="extra-src-title">삼성전자, 반도체 인재 확보 나서…총 82개 직군서 경력사원 채용</span></a><a href="https://www.newsway.co.kr/news/view?ud=2026071312361657543" target="_blank" rel="noopener" class="extra-source-row"><span class="extra-src-badge">뉴스웨이</span><span class="extra-src-title">HBM 잇는 &#x27;가이아&#x27;···삼성, AI 반도체 영토 넓힌다</span></a></div></div>
+                <a href="https://news.nate.com/view/20260714n03865" target="_blank" rel="noopener" class="news-link-btn">원문 보기 →</a>
+            </div>
+            <div class="news-item">
+                <div class="news-item-header">
+                    <span class="news-rank">#11</span>
+                    <a href="https://www.thelec.net/news/articleView.html?idxno=12207" target="_blank" rel="noopener" class="news-title">SK hynix Expands Supplier Base for Hafnium High-k Precursors Used in DRAM</a>
+                </div>
+                <div class="news-meta">
+                    <span class="badge badge-pending">THE ELEC, Korea Electronics Industry Media</span>
+                    <span class="news-date">44분 전</span>
+                    <span class="badge badge-success">DRAM</span><span class="badge badge-success">hynix</span>
+                </div>
+                <p class="news-snippet">SK hynix is expanding its supplier base for hafnium (Hf)-based high-k dielectric precursor.</p>
                 <div class="insight-bar">
                     <span class="insight-label">당사 인사이트</span>
                     <span class="insight-text"><strong>DRAM</strong> 시황 변화 → <strong>LP<strong>DDR</strong></strong> <strong>가격</strong> 방향성 영향, 서버 <strong>DRAM</strong> 동향을 선행 지표로 참고</span>
                 </div>
-                <div class="extra-sources"><span class="extra-sources-label">관련 기사 (4건)</span><div class="extra-sources-links"><a href="https://www.etoday.co.kr/news/view/2602775" target="_blank" rel="noopener" class="extra-source-link">📎 이투데이 — AI 메모리 ‘슈퍼사이클’…삼성·SK·마이크론 투자 전…</a><a href="https://en.sedaily.com/finance/2026/07/12/hbm4-prices-to-double-next-year-as-samsung-sk-hynix-keep" target="_blank" rel="noopener" class="extra-source-link">📎 Seoul Economic Daily — HBM4 Prices to Double Next Yea…</a><a href="https://www.theinvestor.co.kr/article/10806083" target="_blank" rel="noopener" class="extra-source-link">📎 The Investor — What SK hynix’s record Nasdaq …</a><a href="https://www.chosun.com/english/industry-en/2026/07/13/6MSNQHGEFVALTHTQCXAYDCQMDM/" target="_blank" rel="noopener" class="extra-source-link">📎 조선일보 — SK Hynix ADR Surge Fuels AI Ch…</a></div></div>
-                <a href="https://www.digitaltoday.co.kr/en/view/80602/samsung-electronics-sk-hynix-dram-operating-margin-near-80-percent-memory-boom-holds-firm" target="_blank" rel="noopener" class="news-link-btn">원문 보기 →</a>
+                <div class="extra-sources"><span class="extra-sources-label">같은 사건 · 5개 추가 보도</span><div class="extra-sources-links"><a href="https://english.hani.co.kr/arti/english_edition/e_business/1268047.html" target="_blank" rel="noopener" class="extra-source-row"><span class="extra-src-badge">Hankyoreh : English Edition</span><span class="extra-src-title">Hot off record American IPO, SK Hynix races t…</span></a><a href="https://www.chosun.com/english/market-money-en/2026/07/14/Q57H7D327VFQFAGXJX4BZCSD7Q/" target="_blank" rel="noopener" class="extra-source-row"><span class="extra-src-badge">조선일보</span><span class="extra-src-title">SK Hynix Shares Plunge 15% Despite Nasdaq ADR…</span></a><a href="https://en.sedaily.com/international/2026/07/14/sk-hynix-adr-tumbles-93-percent-nears-ipo-price-in-two-days" target="_blank" rel="noopener" class="extra-source-row"><span class="extra-src-badge">Seoul Economic Daily</span><span class="extra-src-title">SK hynix ADR Tumbles 9.3%, Nears IPO Price in…</span></a><a href="https://news.sbs.co.kr/amp/news.amp?news_id=N1008655943" target="_blank" rel="noopener" class="extra-source-row"><span class="extra-src-badge">news.sbs.co.kr</span><span class="extra-src-title">SK Hynix ADR Plummets 9.3%, Hovering Slightly…</span></a><a href="https://www.bloomberg.com/news/articles/2026-07-13/sk-hynix-shares-drop-in-seoul-after-much-hyped-us-trading-debut" target="_blank" rel="noopener" class="extra-source-row"><span class="extra-src-badge">Bloomberg.com</span><span class="extra-src-title">SK Hynix ADRs Tumble in Second Trading Day Af…</span></a></div></div>
+                <a href="https://www.thelec.net/news/articleView.html?idxno=12207" target="_blank" rel="noopener" class="news-link-btn">원문 보기 →</a>
+            </div>
+            <div class="news-item">
+                <div class="news-item-header">
+                    <span class="news-rank">#12</span>
+                    <a href="https://www.newspim.com/news/view/20260713001008" target="_blank" rel="noopener" class="news-title">SK하이닉스, HBM 공급망 재편…청주·용인·인디애나 3대 거점 구축</a>
+                </div>
+                <div class="news-meta">
+                    <span class="badge badge-pending">뉴스핌</span>
+                    <span class="news-date">14시간 전</span>
+                    <span class="badge badge-success">SK하이닉스</span><span class="badge badge-success">HBM</span><span class="badge badge-success">공급</span>
+                </div>
+                <p class="news-snippet">청주서 HBM·D램 생산능력 확대 용인, D램 단위 생산 능력 확대 및 생산능력 분산 역할 인디애나 공장으로 미국 고객 수요 대응 강화. [서울=뉴스핌] SK...</p>
+                <div class="insight-bar">
+                    <span class="insight-label">당사 인사이트</span>
+                    <span class="insight-text"><strong>HBM</strong> <strong>Capa</strong> 집중으로 <strong>LP<strong>DDR</strong></strong>·<strong>UFS</strong> <strong>공급</strong> 여력 축소 가능성 → <strong>재고</strong> 수준 점검 및 선제 물량 확보 검토</span>
+                </div>
+                <div class="extra-sources"><span class="extra-sources-label">같은 사건 · 1개 추가 보도</span><div class="extra-sources-links"><a href="https://www.newspim.com/news/view/20260713000816" target="_blank" rel="noopener" class="extra-source-row"><span class="extra-src-badge">뉴스핌</span><span class="extra-src-title">SK하이닉스, 美 사업 재편 완료...솔리다임 낸드 판매·R&amp;D·인력 이전</span></a></div></div>
+                <a href="https://www.newspim.com/news/view/20260713001008" target="_blank" rel="noopener" class="news-link-btn">원문 보기 →</a>
+            </div>
+            <div class="news-item">
+                <div class="news-item-header">
+                    <span class="news-rank">#13</span>
+                    <a href="https://news.einfomax.co.kr/news/articleViewAmp.html?idxno=4424571" target="_blank" rel="noopener" class="news-title">골드만, 샌디스크 목표가 2천200달러로 상향…&quot;낸드 호황 장기화&quot; |</a>
+                </div>
+                <div class="news-meta">
+                    <span class="badge badge-pending">연합인포맥스</span>
+                    <span class="news-date">23시간 전</span>
+                    <span class="badge badge-success">낸드</span><span class="badge badge-success">메모리</span><span class="badge badge-success">샌디스크</span>
+                </div>
+                <p class="news-snippet">골드만삭스가 낸드플래시 메모리 업황의 구조적 개선을 이유로 샌디스크(NAS:SNDK)의 목표 주가를 상향 조정했다.</p>
+                <div class="insight-bar">
+                    <span class="insight-label">당사 인사이트</span>
+                    <span class="insight-text"><strong>NAND</strong> 업황 변화 → 스마트폰 <strong>UFS</strong> 조달 전략 수립 시 <strong>TrendForce</strong> 데이터와 병행 참고</span>
+                </div>
+                <div class="extra-sources"><span class="extra-sources-label">같은 사건 · 2개 추가 보도</span><div class="extra-sources-links"><a href="https://www.g-enews.com/article/Global-Biz/2026/07/202607132115222159a1f309431_1" target="_blank" rel="noopener" class="extra-source-row"><span class="extra-src-badge">글로벌이코노믹</span><span class="extra-src-title">골드만삭스, 샌디스크 목표가 2200달러 제시</span></a><a href="https://news.nate.com/view/20260714n03601" target="_blank" rel="noopener" class="extra-source-row"><span class="extra-src-badge">네이트</span><span class="extra-src-title">[미국 특징주] 샌디스크, 목표가 3100달러로 두 배 상향에도 주가 13% 급락</span></a></div></div>
+                <a href="https://news.einfomax.co.kr/news/articleViewAmp.html?idxno=4424571" target="_blank" rel="noopener" class="news-link-btn">원문 보기 →</a>
+            </div>
+            <div class="news-item">
+                <div class="news-item-header">
+                    <span class="news-rank">#14</span>
+                    <a href="https://www.hankyung.com/article/2026071429936" target="_blank" rel="noopener" class="news-title">SK하이닉스 美 ADR 9% 급락…가격 격차 37%→19%로 줄어 [분석+]</a>
+                </div>
+                <div class="news-meta">
+                    <span class="badge badge-pending">한국경제</span>
+                    <span class="news-date">38분 전</span>
+                    <span class="badge badge-success">SK하이닉스</span><span class="badge badge-success">가격</span>
+                </div>
+                <p class="news-snippet">적정 가치 맞춰 두 가격 서로 수렴&quot;. 2거래일 만에 하락 마감했다. 37%까지 벌어졌던 국내...</p>
+                <div class="insight-bar">
+                    <span class="insight-label">당사 인사이트</span>
+                    <span class="insight-text"><strong>SK하이닉스</strong> 실적 압박 → <strong>가격</strong> 인하 <strong>협상</strong> 여력 확대, 차기 계약 재검토 기회</span>
+                </div>
+                <div class="extra-sources"><span class="extra-sources-label">같은 사건 · 5개 추가 보도</span><div class="extra-sources-links"><a href="https://www.newspim.com/news/view/20260713001176" target="_blank" rel="noopener" class="extra-source-row"><span class="extra-src-badge">뉴스핌</span><span class="extra-src-title">[AI MY 뉴스] 뉴욕 반도체주 프리뷰...SK하이닉스 ADR 9%↓·마이크론 …</span></a><a href="https://www.yonhapnewstv.co.kr/news/AKR20260714061418Pn5" target="_blank" rel="noopener" class="extra-source-row"><span class="extra-src-badge">연합뉴스TV</span><span class="extra-src-title">SK하이닉스 미 ADR 9.3% 급락…공모가 소폭 웃돌아</span></a><a href="https://imnews.imbc.com/news/2026/world/article/6837170_36925.html" target="_blank" rel="noopener" class="extra-source-row"><span class="extra-src-badge">MBC 뉴스</span><span class="extra-src-title">SK하이닉스 미 ADR도 9.3% 급락‥공모가 소폭 웃돌아</span></a><a href="https://www.ikbc.co.kr/article/view/kbc202607140006" target="_blank" rel="noopener" class="extra-source-row"><span class="extra-src-badge">KBC광주방송</span><span class="extra-src-title">&quot;기대치 리셋?&quot; SK하이닉스 ADR, 상장 이틀째 &#x27;9.3% 급락&#x27;</span></a><a href="https://kbthink.com/news-list/view.html?newsId=20260714073706773" target="_blank" rel="noopener" class="extra-source-row"><span class="extra-src-badge">KB Think</span><span class="extra-src-title">SK하이닉스 ADR 265억달러에 FX스와프 단기물 들썩였나</span></a></div></div>
+                <a href="https://www.hankyung.com/article/2026071429936" target="_blank" rel="noopener" class="news-link-btn">원문 보기 →</a>
             </div>
         </div>
     </div>
