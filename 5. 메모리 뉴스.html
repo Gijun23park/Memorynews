@@ -140,6 +140,7 @@ body {
 .summary-box { display: flex; flex-direction: column; gap: 8px; }
 .summary-line {
     font-size: 16px; font-weight: 600; color: var(--text-main); line-height: 1.7;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
     padding: 10px 14px;
     background-color: var(--bg-color);
     border-left: 4px solid var(--main-color);
@@ -194,7 +195,7 @@ body {
 }
 .news-rank.top { background-color: var(--main-color); color: #fff; border-color: var(--main-color); }
 .news-title {
-    font-size: 16px; font-weight: 700;
+    font-size: 19px; font-weight: 700;
     color: var(--text-main); text-decoration: none;
     line-height: 1.5; flex: 1;
 }
@@ -202,8 +203,8 @@ body {
 .news-meta { display: flex; align-items: center; gap: 5px; flex-wrap: wrap; }
 .news-date { font-size: 12px; color: var(--text-sub); }
 .news-snippet {
-    font-size: 15px; font-weight: 600; color: #3a3a3a;
-    margin: 0; line-height: 1.75;
+    font-size: 16px; font-weight: 600; color: #3a3a3a;
+    margin: 0; line-height: 1.8;
     display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical;
     overflow: hidden;
 }
@@ -328,7 +329,7 @@ mark.hl {
     <div class="card">
         <p class="card-title">모바일 메모리 구매팀 종합 인사이트</p>
         <div class="summary-box">
-            <div class="summary-line">① <strong>가격</strong> 동향 — <strong>LP<strong>DDR</strong></strong> <mark class="hl"><strong>단가</strong> <strong>상승</strong>세 지속</mark> → 차기 모델 <strong>BOM</strong> 원가 압박 대비, 분기 계약 물량 조기 확보 검토</div><div class="summary-line">② <strong>수급</strong> 현황 — 애플, <mark class="hl">中 CXMT 메모리 채택 검토 — <strong>마이크론</strong>·美 정부 강력 반발</mark> → CXMT의 프리미엄 스마트폰 시장 진입 성사 여부에 따라 메모리 <strong>공급</strong> 경쟁 구도 변화 예상 — 美 무역 제재 리스크로 실현 불투명, <strong>공급</strong>사 <strong>가격</strong>·<strong>공급</strong> 조건 동향 지속 모니터링</div><div class="summary-line">③ 구조적 변화 — <mark class="hl">중국 CXMT 증시 상장 — 대규모 자금 조달로 <strong>Capa</strong> 확대 가속화</mark> → CXMT 중장기 <strong>공급</strong> 확대 전망, 삼성·SK 독점 <strong>공급</strong> 구조 완화 가능성 — <strong>가격</strong> 벤치마크 및 조달 다변화 시나리오 사전 검토 필요</div>
+            <div class="summary-line"><strong>HBM</strong> 2027 완판·LTA 확대, 엔비디아 탑재량 축소는 수요 리스크 모니터링 필요</div><div class="summary-line"><strong>DRAM</strong> <strong>가격</strong> 폭등·베라 루빈 원가 62% 메모리 집중 → 삼성·SK <strong>협상</strong> 우위 지속</div><div class="summary-line">中 CXMT 부상 속 <strong>SK하이닉스</strong> M17 19조·충칭 매각 → 국내 생산 집중 전략</div>
         </div>
     </div>
 
