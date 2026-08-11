@@ -138,8 +138,16 @@ body {
 
 /* ── 종합 인사이트 ── */
 .summary-box { display: flex; flex-direction: column; gap: 8px; }
+.summary-num {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 24px; height: 24px; flex-shrink: 0;
+    background-color: var(--main-color); color: #fff;
+    border-radius: 50%; font-size: 13px; font-weight: 700;
+    margin-right: 10px; vertical-align: middle;
+}
 .summary-line {
     font-size: 16px; font-weight: 600; color: var(--text-main); line-height: 1.7;
+    display: flex; align-items: flex-start;
     padding: 10px 14px;
     background-color: var(--bg-color);
     border-left: 4px solid var(--main-color);
@@ -202,8 +210,8 @@ body {
 .news-meta { display: flex; align-items: center; gap: 5px; flex-wrap: wrap; }
 .news-date { font-size: 12px; color: var(--text-sub); }
 .news-snippet {
-    font-size: 14px; font-weight: 600; color: #444;
-    margin: 0; line-height: 1.7;
+    font-size: 15px; font-weight: 600; color: #3a3a3a;
+    margin: 0; line-height: 1.75;
     display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical;
     overflow: hidden;
 }
@@ -328,7 +336,7 @@ mark.hl {
     <div class="card">
         <p class="card-title">모바일 메모리 구매팀 종합 인사이트</p>
         <div class="summary-box">
-            <div class="summary-line">① <strong>가격</strong> 동향 — <strong>LP<strong>DDR</strong></strong> <mark class="hl"><strong>단가</strong> <strong>상승</strong>세 지속</mark> → 차기 모델 <strong>BOM</strong> 원가 압박 대비, 분기 계약 물량 조기 확보 검토</div><div class="summary-line">② <strong>수급</strong> 현황 — 애플, <mark class="hl">中 CXMT 메모리 채택 검토 — <strong>마이크론</strong>·美 정부 강력 반발</mark> → CXMT의 프리미엄 스마트폰 시장 진입 성사 여부에 따라 메모리 <strong>공급</strong> 경쟁 구도 변화 예상 — 美 무역 제재 리스크로 실현 불투명, <strong>공급</strong>사 <strong>가격</strong>·<strong>공급</strong> 조건 동향 지속 모니터링</div><div class="summary-line">③ 구조적 변화 — <mark class="hl">주요국 무역 규제·관세 리스크 현재 진행 중</mark> → 소싱 다변화 및 비상 조달 플랜 점검, 계약 조건에 불가항력 조항 반영 검토</div>
+            <div class="summary-line"><span class="summary-num">①</span>① <strong>가격</strong> 동향 — <strong>LP<strong>DDR</strong></strong> <mark class="hl"><strong>단가</strong> <strong>상승</strong>세 지속</mark> → 차기 모델 <strong>BOM</strong> 원가 압박 대비, 분기 계약 물량 조기 확보 검토</div><div class="summary-line"><span class="summary-num">②</span>② <strong>수급</strong> 현황 — 애플, <mark class="hl">中 CXMT 메모리 채택 검토 — <strong>마이크론</strong>·美 정부 강력 반발</mark> → CXMT의 프리미엄 스마트폰 시장 진입 성사 여부에 따라 메모리 <strong>공급</strong> 경쟁 구도 변화 예상 — 美 무역 제재 리스크로 실현 불투명, <strong>공급</strong>사 <strong>가격</strong>·<strong>공급</strong> 조건 동향 지속 모니터링</div><div class="summary-line"><span class="summary-num">③</span>③ 구조적 변화 — <mark class="hl">주요국 무역 규제·관세 리스크 현재 진행 중</mark> → 소싱 다변화 및 비상 조달 플랜 점검, 계약 조건에 불가항력 조항 반영 검토</div>
         </div>
     </div>
 
@@ -347,7 +355,7 @@ mark.hl {
                     <span class="news-date">17시간 전</span>
                     <span class="badge badge-success">메모리</span><span class="badge badge-success">CXMT</span><span class="badge badge-success">가격</span>
                 </div>
-                <p class="news-snippet">애플이 메모리 가격 상승과 수급난을 해결하고자 중국 <mark class="hl">CXMT</mark>와 협상을 진행했으나, 가격 협상 결렬과 공급 부족으로 인해 차질을 빚고 있습니다.</p>
+                <p class="news-snippet">애플이 메모리 가격 상승과 수급난을 해결하고자 중국 CXMT와 협상을 진행했으나, 가격 협상 결렬과 공급 부족으로 인해 차질을 빚고 있습니다.</p>
                 <div class="insight-bar">
                     <span class="insight-label">당사 인사이트</span>
                     <span class="insight-text">중국 메모리 업체(CXMT·YMTC) 동향 → 중장기 <strong>공급</strong> 증가에 따른 <strong>가격</strong> 압력 가능성 모니터링</span>
@@ -365,7 +373,7 @@ mark.hl {
                     <span class="news-date">10시간 전</span>
                     <span class="badge badge-success">메모리</span><span class="badge badge-success">HBM</span><span class="badge badge-success">가격</span>
                 </div>
-                <p class="news-snippet">엔비디아가 차세대 AI 칩 <mark class="hl">루빈 울트라</mark>의 <mark class="hl">HBM</mark> 용량을 최대 81% 줄이는 방안을 검토 중임. 이는 메모리 <mark class="hl">가격 급등</mark>에 따른 원가 부담 완화가 목적임.</p>
+                <p class="news-snippet">엔비디아가 차세대 AI 칩 루빈 울트라의 HBM 용량을 최대 81% 줄이는 방안을 검토 중임. 이는 메모리 <mark class="hl">가격 급등에</mark> 따른 원가 부담 완화가 목적임.</p>
                 <div class="insight-bar">
                     <span class="insight-label">당사 인사이트</span>
                     <span class="insight-text">메모리 업황 참고 → 주간 시황 보고 및 분기 구매 계획 수립 시 배경 자료로 활용</span>
@@ -401,7 +409,7 @@ mark.hl {
                     <span class="news-date">18시간 전</span>
                     <span class="badge badge-success">LPDDR</span><span class="badge badge-success">메모리</span><span class="badge badge-success">CXMT</span>
                 </div>
-                <p class="news-snippet">한눈에 보는 오늘 : 홈 - 뉴스 : [서울신문 나우뉴스]올해 새롭게 도입되는 메모리 규격 중 하나가 바로 '<mark class="hl">LPDDR6</mark>'입니다. <mark class="hl">LPDDR</mark> 메모리는 스마트폰 같은 모바일 기기를...</p>
+                <p class="news-snippet">한눈에 보는 오늘 : 홈 - 뉴스 : [서울신문 나우뉴스]올해 새롭게 도입되는 메모리 규격 중 하나가 바로 'LPDDR6'입니다. LPDDR 메모리는 스마트폰 같은 모바일 기기를...</p>
                 <div class="insight-bar">
                     <span class="insight-label">당사 인사이트</span>
                     <span class="insight-text">중국 메모리 업체(CXMT·YMTC) 동향 → 중장기 <strong>공급</strong> 증가에 따른 <strong>가격</strong> 압력 가능성 모니터링</span>
@@ -419,7 +427,7 @@ mark.hl {
                     <span class="news-date">28분 전</span>
                     <span class="badge badge-success">SK하이닉스</span><span class="badge badge-success">메모리</span><span class="badge badge-success">공급</span>
                 </div>
-                <p class="news-snippet">삼성전자와 SK하이닉스가 메모리 판매 방식을 다년 장기공급계약(<mark class="hl">LTA</mark>)으로 옮긴 가운데 다른 접근 방식을 보이고 있다. 삼성전자는 생산...</p>
+                <p class="news-snippet">삼성전자와 SK하이닉스가 메모리 판매 방식을 다년 장기공급계약(LTA)으로 옮긴 가운데 다른 접근 방식을 보이고 있다. 삼성전자는 생산...</p>
                 <div class="insight-bar">
                     <span class="insight-label">당사 인사이트</span>
                     <span class="insight-text"><strong>SK하이닉스</strong> 전략 변화 → <strong>LP<strong>DDR</strong></strong>·<strong>HBM</strong> <strong>공급</strong> 조건 및 중장기 파트너십 영향 모니터링</span>
@@ -437,7 +445,7 @@ mark.hl {
                     <span class="news-date">오늘</span>
                     
                 </div>
-                <p class="news-snippet">엔비디아가 출하를 시작한 차세대 인공지능(AI) 플랫폼 일 글로벌 투자은행 UBS의 수퍼칩 부품명세서 분석에 따르면 베라 중앙처리장치(CPU) 1개와 루빈 그래픽처리장치(GPU) 2개를 묶은 핵심 컴퓨팅 단위인 수퍼칩의 원가 가운데 62%에 해당하는 2만4297달러(약 3460만원)가 메모리 반도체 가격인 것으로 분석됐다. 전작인 GB300의 메모리 원가 비중(53%)보다 9%포인트 높아졌다. 메모리 비중 급증의 주역은 고대역폭메모리(<mark class="hl">HBM</mark>)가 아닌 CPU용 메모리 모듈 개 원가 5540만원에서 메모리가 62%&quot;,&quot;mobile&quot; 엔</p>
+                <p class="news-snippet">엔비디아가 출하를 시작한 차세대 인공지능(AI) 플랫폼 일 글로벌 투자은행 UBS의 수퍼칩 부품명세서 분석에 따르면 베라 중앙처리장치(CPU) 1개와 루빈 그래픽처리장치(GPU) 2개를 묶은 핵심 컴퓨팅 단위인 수퍼칩의 원가 가운데 62%에 해당하는 2만4297달러(약 3460만원)가 메모리 반도체 가격인 것으로 분석됐다. 전작인 GB300의 메모리 원가 비중(53%)보다 9%포인트 높아졌다. 메모리 비중 급증의 주역은 고대역폭메모리(HBM)가 아닌 CPU용 메모리 모듈 개 원가 5540만원에서 메모리가 62%&quot;,&quot;mobile&quot; 엔</p>
                 <div class="insight-bar">
                     <span class="insight-label">당사 인사이트</span>
                     <span class="insight-text">메모리 업황 참고 → 주간 시황 보고 및 분기 구매 계획 수립 시 배경 자료로 활용</span>
@@ -455,7 +463,7 @@ mark.hl {
                     <span class="news-date">2시간 전</span>
                     <span class="badge badge-success">낸드</span><span class="badge badge-success">SK하이닉스</span><span class="badge badge-success">메모리</span>
                 </div>
-                <p class="news-snippet">SK하이닉스가 미국 모노리식3D로부터 인공지능 서버용 고대역폭 메모리(<mark class="hl">HBM</mark>)와 3D 낸드플래시 특허 침해 소송을 당해 미국 국제무역위원회(US<mark class="hl">ITC</mark>)의 두 번째 수입 금지...</p>
+                <p class="news-snippet">SK하이닉스가 미국 모노리식3D로부터 인공지능 서버용 고대역폭 메모리(HBM)와 3D 낸드플래시 특허 침해 소송을 당해 미국 국제무역위원회(USITC)의 두 번째 수입 금지...</p>
                 <div class="insight-bar">
                     <span class="insight-label">당사 인사이트</span>
                     <span class="insight-text"><strong>HBM</strong> 동향이 <strong>공급</strong>사 <strong>Capa</strong> 배분에 영향 → <strong>LP<strong>DDR</strong></strong>·<strong>UFS</strong> <strong>수급</strong> 여력 변화 주기적 모니터링 필요</span>
@@ -509,7 +517,7 @@ mark.hl {
                     <span class="news-date">22시간 전</span>
                     <span class="badge badge-success">낸드</span><span class="badge badge-success">SK하이닉스</span><span class="badge badge-success">메모리</span>
                 </div>
-                <p class="news-snippet">이번엔 다르다 파격 전망…삼전닉스 역대급 겹호재 터졌다, 시장조사업체들 메모리 초호황 지속 <mark class="hl">HBM</mark> 넘어 D램·낸드까지 수요 폭발 삼성·SK하이닉스 겹호재에 실적 기대...</p>
+                <p class="news-snippet">이번엔 다르다 파격 전망…삼전닉스 역대급 겹호재 터졌다, 시장조사업체들 메모리 초호황 지속 HBM 넘어 D램·낸드까지 수요 폭발 삼성·SK하이닉스 겹호재에 실적 기대...</p>
                 <div class="insight-bar">
                     <span class="insight-label">당사 인사이트</span>
                     <span class="insight-text">메모리 업황 참고 → 주간 시황 보고 및 분기 구매 계획 수립 시 배경 자료로 활용</span>
