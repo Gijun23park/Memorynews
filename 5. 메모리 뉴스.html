@@ -109,18 +109,18 @@ body {
     box-shadow: var(--shadow-card);
 }
 .card-title {
-    font-size: 15px; font-weight: 800;
+    font-size: 19px; font-weight: 800;
     margin: 0 0 16px; color: var(--text-main);
     border-bottom: 2px solid var(--border-color);
     padding-bottom: 11px;
-    letter-spacing: -0.2px;
-    display: flex; align-items: center; gap: 8px;
+    letter-spacing: -0.3px;
+    display: flex; align-items: center; gap: 10px;
 }
 .card-title::before {
     content: ''; display: inline-block;
-    width: 4px; height: 16px;
+    width: 5px; height: 20px;
     background: var(--main-color);
-    border-radius: 2px;
+    border-radius: 3px;
 }
 
 /* ── KPI — 카드별 컬러 ── */
@@ -392,7 +392,7 @@ mark.hl {
     <div class="card">
         <p class="card-title">모바일 메모리 구매팀 종합 인사이트</p>
         <div class="summary-box">
-            <div class="summary-line"><span class="sum-text">① <strong>가격</strong> 동향 — <strong>LP<strong>DDR</strong></strong> <strong>단가</strong> <strong>상승</strong>세 지속 → 차기 모델 <strong>BOM</strong> 원가 압박 대비, 분기 계약 물량 조기 확보 검토</span></div><div class="summary-line"><span class="sum-text">② <strong>수급</strong> 현황 — 애플, 中 CXMT 메모리 채택 검토 — <strong>마이크론</strong>·美 정부 강력 반발 → CXMT의 프리미엄 스마트폰 시장 진입 성사 여부에 따라 메모리 <strong>공급</strong> 경쟁 구도 변화 예상 — 美 무역 제재 리스크로 실현 불투명, <strong>공급</strong>사 <strong>가격</strong>·<strong>공급</strong> 조건 동향 지속 모니터링</span></div><div class="summary-line"><span class="sum-text">③ 구조적 변화 — 중국 메모리 업체(CXMT 등) <strong>공급</strong> 확대 가시화 → 삼성·SK 독점 <strong>공급</strong> 구조 완화 가능성, <strong>가격</strong> 벤치마크 및 조달 다변화 시나리오 사전 검토</span></div>
+            <div class="summary-line cat-price"><span class="sum-label">가격</span><span class="sum-text"><strong>HBM</strong> 완판·<strong>DRAM</strong> <strong>가격</strong> 폭등 지속, 엔비디아 루빈 울트라 탑재량 축소 검토는 단기 <strong>가격</strong> 변동성 리스크로 모니터링 필요</span></div><div class="summary-line cat-supply"><span class="sum-label">수급</span><span class="sum-text">메모리 3사 LTA 확대·<strong>SK하이닉스</strong> M17 19조 투자로 <strong>공급</strong> 고착화 진행, 코어위브·슈퍼마이크로 AI 붐 재확인은 중장기 수요 견조 신호</span></div><div class="summary-line cat-rival"><span class="sum-label">경쟁사</span><span class="sum-text">CXMT <strong>DDR</strong>5 수율 90% 돌파·글로벌 PC <strong>공급</strong>망 침투 가시화, 애플 CXMT 채택 검토는 삼성·SK <strong>공급</strong> 다변화 압력 신호로 주시</span></div>
         </div>
     </div>
 
@@ -440,20 +440,20 @@ mark.hl {
             <div class="news-item">
                 <div class="news-item-header">
                     <span class="news-rank top">#3</span>
-                    <a href="https://www.chosun.com/economy/tech_it/2026/08/12/O3JC6DKFWRF5PGGYRTJQ3IPRZU/" target="_blank" rel="noopener" class="news-title">엔비디아·월가 '5000억달러 금융 동맹'… AI 투자 지원</a>
+                    <a href="https://www.ebn.co.kr/news/articleView.html?idxno=1719919" target="_blank" rel="noopener" class="news-title">HBM 56% 쥔 SK하이닉스, 몸값은 마이크론 절반…美서 “최고 AI 메모리주”</a>
                 </div>
                 <div class="news-meta">
-                    <span class="badge badge-pending">조선일보</span>
-                    <span class="news-date">당일</span>
-                    <span class="badge badge-success">메모리</span><span class="badge badge-success">AI</span><span class="badge badge-success">엔비디아</span>
+                    <span class="badge badge-pending">www.ebn.co.kr</span>
+                    <span class="news-date">19시간 전</span>
+                    <span class="badge badge-success">낸드</span><span class="badge badge-success">마이크론</span><span class="badge badge-success">SK하이닉스</span>
                 </div>
-                <p class="news-snippet">젠슨 황 엔비디아 최고경영자(CEO)가 지난 6월 대만 타이페이에서 열린 컴퓨텍스에서 자사 AI 플랫폼 '베라 루빈'을 소개하고 있다. 인공지능(AI) 반도체 최강자 엔비디아가 월가 대형 금융회사들과 손잡고 5000억달러(약 700조원) 규모의 AI 인프라 자금 조달망을 구축한다. 금융시장의 외부 자금을 조달해, 고객의 AI 데이터센터 건설과 엔비디아 장비 도입을 지원하겠다는 것이다. 이는 자금력이 부족한 고객에게도 돈줄을 알선해 대규모 GPU 구매를 가능하게 하고, 이를 통해 칩 판매와 AI 생태계를 함께 키우겠다는 전략이다. 아폴로·블랙록·블랙스톤·브룩필드·골드만삭스·KKR 등 6개 금융회사와 고 밝혔다. 미국 월스</p>
+                <p class="news-snippet">HBM 점유율 56.4%로 압도적 1위…D램·낸드도 세계 2위 선행 PER 5.5배, 마이크론 12배의 절반…최근 조정은 '매수 기회' 실적 정점·中 증설 우려는 변수…</p>
                 <div class="insight-bar">
                     <span class="insight-label">당사 인사이트</span>
-                    <span class="insight-text"><strong>공급</strong>망 리스크 포착 → 안전 <strong>재고</strong> 수준 긴급 점검 및 대체 소싱·<strong>재고</strong> 확충 여부 즉시 검토</span>
+                    <span class="insight-text"><strong>HBM</strong> 동향이 <strong>공급</strong>사 <strong>Capa</strong> 배분에 영향 → <strong>LP<strong>DDR</strong></strong>·<strong>UFS</strong> <strong>수급</strong> 여력 변화 주기적 모니터링 필요</span>
                 </div>
-                
-                <a href="https://www.chosun.com/economy/tech_it/2026/08/12/O3JC6DKFWRF5PGGYRTJQ3IPRZU/" target="_blank" rel="noopener" class="news-link-btn">원문 보기 →</a>
+                <div class="extra-sources"><span class="extra-sources-label">같은 사건 · 1개 추가 보도</span><div class="extra-sources-links"><a href="https://kr.investing.com/news/stock-market-news/article-2055508" target="_blank" rel="noopener" class="extra-source-row"><span class="extra-src-badge">Investing.com 한국어</span><span class="extra-src-title">HBM 56% 쥔 SK하이닉스, 몸값은 마이크론 절반…美서 “최고 AI 메모리주”…</span></a></div></div>
+                <a href="https://www.ebn.co.kr/news/articleView.html?idxno=1719919" target="_blank" rel="noopener" class="news-link-btn">원문 보기 →</a>
             </div>
             <div class="news-item">
                 <div class="news-item-header">
@@ -476,20 +476,20 @@ mark.hl {
             <div class="news-item">
                 <div class="news-item-header">
                     <span class="news-rank">#5</span>
-                    <a href="https://stock.mk.co.kr/news/view/1140148" target="_blank" rel="noopener" class="news-title">코어위브·슈퍼마이크로 실적·전망 예상 상회…AI 붐 재확인</a>
+                    <a href="https://www.edaily.co.kr/News/Read?newsId=02236966645546664&amp;mediaCodeNo=257" target="_blank" rel="noopener" class="news-title">[美특징주]마이크론, 메모리 공급 부족 장기화 기대…주가↑</a>
                 </div>
                 <div class="news-meta">
-                    <span class="badge badge-pending">매일경제</span>
-                    <span class="news-date">당일</span>
-                    <span class="badge badge-success">메모리</span><span class="badge badge-success">AI</span><span class="badge badge-success">엔비디아</span>
+                    <span class="badge badge-pending">이데일리</span>
+                    <span class="news-date">2시간 전</span>
+                    <span class="badge badge-success">마이크론</span><span class="badge badge-success">메모리</span><span class="badge badge-success">공급</span>
                 </div>
-                <p class="news-snippet">인공지능(AI) 인프라 붐이 클라우드 서비스와 서버 제조 양쪽에서 동시에 재확인됐다. AI 클라우드 업체 코어위브와 서버 제조사 슈퍼마이크로컴퓨터가 11일(현지시간) 나란히 시장 예상을 웃도는 실적과 전망을 내놓으며 주가가 동반 급등했다. 두 회사 모두 엔비디아 그래픽처리장치(GPU)를 중심으로 사업을 구축하고 있어 엔비디아 생태계 전반에 훈풍이 확인됐다는 평가가 나온다. 블룸버그, CNBC 등에 따르면 코어위브는 2분기(6월 마감) 매출이 25억8천만달러로 전년동기 대비 112% 급증했다고 밝혔다. 시장 예상치(25억6천만달러)를 웃돈 수치다. 조정 주당손실도 1.03달러로 예상(1.2</p>
+                <p class="news-snippet">메모리 반도체업체 마이크론테크놀로지(MU)가 메모리 반도체 공급 부족 장기화 전망에 주가가 상승했다. 11일(현지시간) 정규장에서 마이크론 테크놀로지 주가는 전일...</p>
                 <div class="insight-bar">
                     <span class="insight-label">당사 인사이트</span>
-                    <span class="insight-text">메모리 업황 참고 → 주간 시황 보고 및 분기 구매 계획 수립 시 배경 자료로 활용</span>
+                    <span class="insight-text">경쟁 <strong>공급</strong>사 리스크 발생 → 의존도 점검 및 삼성·SK 대체 <strong>공급</strong>처 확보 방안 즉시 검토</span>
                 </div>
                 
-                <a href="https://stock.mk.co.kr/news/view/1140148" target="_blank" rel="noopener" class="news-link-btn">원문 보기 →</a>
+                <a href="https://www.edaily.co.kr/News/Read?newsId=02236966645546664&amp;mediaCodeNo=257" target="_blank" rel="noopener" class="news-link-btn">원문 보기 →</a>
             </div>
             <div class="news-item">
                 <div class="news-item-header">
@@ -620,38 +620,38 @@ mark.hl {
             <div class="news-item">
                 <div class="news-item-header">
                     <span class="news-rank">#13</span>
-                    <a href="https://www.edaily.co.kr/News/Read?newsId=02236966645546664&amp;mediaCodeNo=257" target="_blank" rel="noopener" class="news-title">[美특징주]마이크론, 메모리 공급 부족 장기화 기대…주가↑</a>
+                    <a href="https://stock.mk.co.kr/news/view/1140148" target="_blank" rel="noopener" class="news-title">코어위브·슈퍼마이크로 실적·전망 예상 상회…AI 붐 재확인</a>
                 </div>
                 <div class="news-meta">
-                    <span class="badge badge-pending">이데일리</span>
-                    <span class="news-date">2시간 전</span>
-                    <span class="badge badge-success">마이크론</span><span class="badge badge-success">메모리</span><span class="badge badge-success">공급</span>
+                    <span class="badge badge-pending">매일경제</span>
+                    <span class="news-date">당일</span>
+                    <span class="badge badge-success">메모리</span><span class="badge badge-success">AI</span><span class="badge badge-success">엔비디아</span>
                 </div>
-                <p class="news-snippet">메모리 반도체업체 마이크론테크놀로지(MU)가 메모리 반도체 공급 부족 장기화 전망에 주가가 상승했다. 11일(현지시간) 정규장에서 마이크론 테크놀로지 주가는 전일...</p>
+                <p class="news-snippet">인공지능(AI) 인프라 붐이 클라우드 서비스와 서버 제조 양쪽에서 동시에 재확인됐다. AI 클라우드 업체 코어위브와 서버 제조사 슈퍼마이크로컴퓨터가 11일(현지시간) 나란히 시장 예상을 웃도는 실적과 전망을 내놓으며 주가가 동반 급등했다. 두 회사 모두 엔비디아 그래픽처리장치(GPU)를 중심으로 사업을 구축하고 있어 엔비디아 생태계 전반에 훈풍이 확인됐다는 평가가 나온다. 블룸버그, CNBC 등에 따르면 코어위브는 2분기(6월 마감) 매출이 25억8천만달러로 전년동기 대비 112% 급증했다고 밝혔다. 시장 예상치(25억6천만달러)를 웃돈 수치다. 조정 주당손실도 1.03달러로 예상(1.2</p>
                 <div class="insight-bar">
                     <span class="insight-label">당사 인사이트</span>
-                    <span class="insight-text">경쟁 <strong>공급</strong>사 리스크 발생 → 의존도 점검 및 삼성·SK 대체 <strong>공급</strong>처 확보 방안 즉시 검토</span>
+                    <span class="insight-text">메모리 업황 참고 → 주간 시황 보고 및 분기 구매 계획 수립 시 배경 자료로 활용</span>
                 </div>
                 
-                <a href="https://www.edaily.co.kr/News/Read?newsId=02236966645546664&amp;mediaCodeNo=257" target="_blank" rel="noopener" class="news-link-btn">원문 보기 →</a>
+                <a href="https://stock.mk.co.kr/news/view/1140148" target="_blank" rel="noopener" class="news-link-btn">원문 보기 →</a>
             </div>
             <div class="news-item">
                 <div class="news-item-header">
                     <span class="news-rank">#14</span>
-                    <a href="https://www.ebn.co.kr/news/articleView.html?idxno=1719919" target="_blank" rel="noopener" class="news-title">HBM 56% 쥔 SK하이닉스, 몸값은 마이크론 절반…美서 “최고 AI 메모리주”</a>
+                    <a href="https://www.chosun.com/economy/tech_it/2026/08/12/O3JC6DKFWRF5PGGYRTJQ3IPRZU/" target="_blank" rel="noopener" class="news-title">엔비디아·월가 '5000억달러 금융 동맹'… AI 투자 지원</a>
                 </div>
                 <div class="news-meta">
-                    <span class="badge badge-pending">www.ebn.co.kr</span>
-                    <span class="news-date">19시간 전</span>
-                    <span class="badge badge-success">낸드</span><span class="badge badge-success">마이크론</span><span class="badge badge-success">SK하이닉스</span>
+                    <span class="badge badge-pending">조선일보</span>
+                    <span class="news-date">당일</span>
+                    <span class="badge badge-success">메모리</span><span class="badge badge-success">AI</span><span class="badge badge-success">엔비디아</span>
                 </div>
-                <p class="news-snippet">HBM 점유율 56.4%로 압도적 1위…D램·낸드도 세계 2위 선행 PER 5.5배, 마이크론 12배의 절반…최근 조정은 '매수 기회' 실적 정점·中 증설 우려는 변수…</p>
+                <p class="news-snippet">젠슨 황 엔비디아 최고경영자(CEO)가 지난 6월 대만 타이페이에서 열린 컴퓨텍스에서 자사 AI 플랫폼 '베라 루빈'을 소개하고 있다. 인공지능(AI) 반도체 최강자 엔비디아가 월가 대형 금융회사들과 손잡고 5000억달러(약 700조원) 규모의 AI 인프라 자금 조달망을 구축한다. 금융시장의 외부 자금을 조달해, 고객의 AI 데이터센터 건설과 엔비디아 장비 도입을 지원하겠다는 것이다. 이는 자금력이 부족한 고객에게도 돈줄을 알선해 대규모 GPU 구매를 가능하게 하고, 이를 통해 칩 판매와 AI 생태계를 함께 키우겠다는 전략이다. 아폴로·블랙록·블랙스톤·브룩필드·골드만삭스·KKR 등 6개 금융회사와 고 밝혔다. 미국 월스</p>
                 <div class="insight-bar">
                     <span class="insight-label">당사 인사이트</span>
-                    <span class="insight-text"><strong>HBM</strong> 동향이 <strong>공급</strong>사 <strong>Capa</strong> 배분에 영향 → <strong>LP<strong>DDR</strong></strong>·<strong>UFS</strong> <strong>수급</strong> 여력 변화 주기적 모니터링 필요</span>
+                    <span class="insight-text"><strong>공급</strong>망 리스크 포착 → 안전 <strong>재고</strong> 수준 긴급 점검 및 대체 소싱·<strong>재고</strong> 확충 여부 즉시 검토</span>
                 </div>
-                <div class="extra-sources"><span class="extra-sources-label">같은 사건 · 1개 추가 보도</span><div class="extra-sources-links"><a href="https://kr.investing.com/news/stock-market-news/article-2055508" target="_blank" rel="noopener" class="extra-source-row"><span class="extra-src-badge">Investing.com 한국어</span><span class="extra-src-title">HBM 56% 쥔 SK하이닉스, 몸값은 마이크론 절반…美서 “최고 AI 메모리주”…</span></a></div></div>
-                <a href="https://www.ebn.co.kr/news/articleView.html?idxno=1719919" target="_blank" rel="noopener" class="news-link-btn">원문 보기 →</a>
+                
+                <a href="https://www.chosun.com/economy/tech_it/2026/08/12/O3JC6DKFWRF5PGGYRTJQ3IPRZU/" target="_blank" rel="noopener" class="news-link-btn">원문 보기 →</a>
             </div>
         </div>
     </div>
