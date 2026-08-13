@@ -163,12 +163,13 @@ body {
 /* ── 종합 인사이트 ── */
 .summary-box { display: flex; flex-direction: column; gap: 10px; }
 .summary-line {
-    display: flex; align-items: flex-start; gap: 14px;
+    display: flex; align-items: center; gap: 14px;
     font-size: 16px; font-weight: 600; color: var(--text-main); line-height: 1.65;
     padding: 13px 18px;
     background-color: var(--bg-color);
     border-radius: var(--radius-md);
     border-left: 5px solid var(--main-color);
+    overflow: hidden;
 }
 .sum-label {
     font-size: 13px; font-weight: 800; white-space: nowrap;
@@ -176,7 +177,7 @@ body {
     color: #fff; flex-shrink: 0; letter-spacing: 0.4px;
     box-shadow: 0 1px 4px rgba(0,0,0,0.18);
 }
-.sum-text { flex: 1; white-space: normal; word-break: keep-all; }
+.sum-text { flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
 /* 가격 — 레드 */
 .summary-line.cat-price {
@@ -232,7 +233,7 @@ body {
 .news-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 20px;
+    gap: 16px;
 }
 .news-item {
     display: flex; flex-direction: column; gap: 9px;
@@ -272,7 +273,7 @@ body {
 .news-snippet {
     font-size: 16px; font-weight: 600; color: #2C2F38;
     margin: 0; line-height: 1.85;
-    display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical;
+    display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical;
     overflow: hidden;
 }
 mark.hl {
